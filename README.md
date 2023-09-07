@@ -1,8 +1,15 @@
-# workshop-in-R-programming-CUSAT-2023 <img src="logo_CUSAT.png" align="right" height="139" />
+# Workshop series on R programming <img src="logo_CUSAT.png" align="right" height="139" />
+
+## About the Workshop
+
+Unlock the power of data analysis and visualization with our comprehensive R Workshop! Join us to learn R programming, data manipulation, and visualization techniques. Discover how to effectively analyze data, create insightful visualizations, and gain valuable insights for your research. Our hands-on approach and expert instructors will guide you through practical exercises and real-world examples, ensuring you leave with practical skills to harness R's capabilities.
+
+* **Location**: *Department of Statistics, CUSAT*
+* **Resource**: *Dr. Rasin RS*, *Mahesh D* & *Rakesh Poduval*
 
 ## Day 1 sessions: September 16 2023
 
-| \#  | Schedule      | Topic                            | Resource person |
+| #  | Schedule      | Topic                            | Resource person |
 |-----|---------------|----------------------------------|-----------------|
 | 1   | 09:00 - 09:30 | Introduction to RStudio & GitHub | Mahesh          |
 | 2   | 09:30 - 10:30 | Basic programming with R         | Rasin           |
