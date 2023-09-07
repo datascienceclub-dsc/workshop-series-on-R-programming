@@ -1,6 +1,6 @@
 # workshop-in-R-programming-CUSAT-2023 <img src="logo_CUSAT.png" align="right" height="139" />
 
-## Day 1 sessions: 16^th^ September 2023
+## Day 1 sessions: September 16 2023
 
 | \#  | Schedule      | Topic                            | Resource person |
 |-----|---------------|----------------------------------|-----------------|
@@ -15,7 +15,7 @@
 
 *Main focus on `tidyverse` with a bonus talk on `flextable`, `dlookr` & report pack if time permits.*
 
-## Day 2 sessions: 17^th^ September 2023
+## Day 2 sessions: September 17 2023
 
 | #   | Schedule      | Topic                             | Resource person |
 |-----|---------------|-----------------------------------|-----------------|
