@@ -34,3 +34,9 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 | 4   | 14:00 - 16:00 | Open session for clarifications   | Rasin & Rakesh  |
 
 *Main focus on family of base `apply` functions, R package `purrr` & `dplyr:::rowwise` with a bonus talk on R package `gt` & latex templates if time permits.*
+
+## References 
+
+* <http://adv-r.had.co.nz>
+* <https://www.tidyverse.org>
+* <https://quarto.org>
