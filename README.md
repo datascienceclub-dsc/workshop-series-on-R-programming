@@ -22,7 +22,7 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 
 *Main focus on `tidyverse` with a bonus talk on `flextable`, `dlookr` & report pack if time permits.*
 
-## Day 2 sessions: Saturday, September 18 2023
+## Day 2 sessions: Saturday, September 16 2023
 
 | #   | Schedule      | Topic                             | Resource person |
 |-----|---------------|-----------------------------------|-----------------|
