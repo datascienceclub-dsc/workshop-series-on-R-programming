@@ -7,7 +7,7 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 * **Location**: *Department of Statistics, CUSAT*
 * **Resource**: *Dr. Rasin RS*, *Mahesh D* & *Rakesh Poduval*
 
-## Day 1 sessions: September 16 2023
+## Day 1 sessions: Friday, September 15 2023
 
 | #  | Schedule      | Topic                            | Resource person |
 |-----|---------------|----------------------------------|-----------------|
@@ -22,7 +22,7 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 
 *Main focus on `tidyverse` with a bonus talk on `flextable`, `dlookr` & report pack if time permits.*
 
-## Day 2 sessions: September 17 2023
+## Day 2 sessions: Saturday, September 18 2023
 
 | #   | Schedule      | Topic                             | Resource person |
 |-----|---------------|-----------------------------------|-----------------|
