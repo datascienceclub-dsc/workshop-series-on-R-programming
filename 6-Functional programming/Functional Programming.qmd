@@ -1,0 +1,330 @@
+---
+title: "Functional programming"
+author: "Rakesh Poduval"
+description: "Workshop series in R programming"
+date: 9/16/2023
+format:
+  html:
+    theme: default
+    page-layout: article
+    grid:
+      sidebar-width: 250px
+      body-width: 800px
+      margin-width: 250px
+      gutter-width: 1.5em
+    smooth-scroll: true
+    anchor-sections: true
+    toc: true
+    toc-expand: 2
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    number-depth: 3
+    code-fold: true
+    code-summary: "show code"
+    code-copy: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: "show code"
+    code-line-numbers: true
+    df-print: kable
+    fig-cap-location: bottom
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+> R, at its heart, is a functional language which lends itself to a problem solving centred on **functions**. A *functional style* is about decomposing a big problem into smaller pieces, then solving each piece with a function. The three keys functional techniques for this are: *`functionals`*, *`function factories`* & *`function operators`*.
+
+# Functionals
+
+## Introduction
+
+A **functional** is a function that takes a function as an input and returns a vector as output. A common use of **functional** is as an alternative to for loops since loops have a bad rap for being slow, although they're very flexible. Check out an simple examples below.
+
+Calculating mean of random numbers generated:
+
+```{.r}
+randomise <- function(f, n = 1000) f(runif(n, min = 0, max = 1))
+randomise(mean)
+```
+
+## Motivation
+
+### Scenario 1
+Replace all missing values (`NA`s) with 0
+
+```{r, include=TRUE}
+#| tbl-cap: Sample data with missings
+#| tbl-colwidths: [30,70]
+#| column: margin
+set.seed(1010) # generates same sample
+dd <- setNames(data.frame(replicate(6, sample(c(1:10, NA), 6, rep = TRUE))), letters[1:6])
+dd
+```
+Few approaches to do so:
+
+::: panel-tabset
+
+## `copy-paste`
+```{.r}
+dd$b[is.na(dd$b)] <- 0
+dd$c[is.na(dd$c)] <- 0
+dd$f[is.na(dd$f)] <- 0
+```
+
+## `DRY-principle`
+```{.r}
+replaceNA <- function(x, replace_with = 0) {
+  x[is.na(x)] <- replace_with
+  x
+}
+dd$b <- replaceNA(dd$b)
+dd$c <- replaceNA(dd$c)
+dd$f <- replaceNA(dd$f)
+```
+
+## `loop`
+```{.r}
+replaceNA <- function(x, replace_with = 0) {
+  x[is.na(x)] <- replace_with
+  x
+}
+for(i in 1:ncol(dd)) {
+  dd[, i] <- replaceNA(dd[, i])
+}
+```
+
+## `functionals-lapply`
+```{.r}
+replaceNA <- function(x, replace_with = 0) {
+  x[is.na(x)] <- replace_with
+  x
+}
+dd[] <- lapply(dd, replaceNA)
+# dd[c(2, 3, 6)] <- lapply(dd[c(2, 3, 6)], replaceNA)
+```
+
+:::
+
+This code `functionals-lapply` has five advantages over others:
+
+- It’s more compact.
+- If the code for a missing value changes, it only needs to be updated in one place.
+- It works for any number of columns. There is no way to accidentally miss a column.
+- There is no way to accidentally treat one column differently than another.
+- It is easy to generalise this technique to a subset of columns:
+
+### Scenario 2
+compute the same set of descriptive statistics for each variable
+
+::: panel-tabset
+
+## `copy-paste`
+```{.r}
+min(dd$a, na.rm = TRUE) # minimum
+mean(dd$a, na.rm = TRUE) # average 
+median(dd$a, na.rm = TRUE) # median 
+max(dd$a, na.rm = TRUE) # maximum
+sd(dd$a, na.rm = TRUE) # standard deviation
+
+# ... repeat the same for rest of the columns of dd
+```
+
+## `DRY-principle`
+```{.r}
+descriptive_stats <- function(x, ...) {
+  c(min = min(x, ...), avg = mean(x, ...), med = median(x, ...), 
+    max = max(x, ...), std = sd(x, ...))
+  }
+descriptive_stats(dd$a, na.rm = TRUE)
+descriptive_stats(dd$b, na.rm = TRUE)
+descriptive_stats(dd$c, na.rm = TRUE)
+
+# ... repeat the same for rest of the columns of dd
+```
+
+## `functionals-lapply`
+```{.r}
+descriptive_stats <- function(x, ...) {
+  c(min = min(x, ...), avg = mean(x, ...), med = median(x, ...), 
+    max = max(x, ...), std = sd(x, ...))
+  }
+  
+data.frame(lapply(dd, descriptive_stats, na.rm = TRUE))
+data.frame(apply(dd, 2, descriptive_stats)) # alternatively
+
+```
+
+:::
+## Fundamental concept
+
+We will focus on _`functionals`_ provided by the [purrr](https://purrr.tidyverse.org) package. These functions (`purrr:::map()`) have a consistent interface that makes it easier to understand the key ideas than their base equivalents.
+
+::: {#fig-concept layout="[[42,58], [46, 54]]"}
+
+![calls the function once for each element](diagrams/map.png){#fig-1a}
+
+![(a) with single argument of the f()](diagrams/map-arg.png){#fig-1b}
+
+![(a) with multi argument of the f()](diagrams/map-arg-recycle.png){#fig-1c}
+
+![calls the function once for each list](diagrams/map-list.png){#fig-1d}
+
+**Design of `purrr:::map()`**
+
+:::
+
+All map functions always return an output vector the same length as the input. Here **`map()`** refers to _"an operation that associates each element of a given set with one or more elements of a second set"_. This makes sense here because `map()` defines a mapping from one vector to another. 
+
+## Base vs. purrr
+
+```{.r}
+library(purrr)
+```
+
+The base equivalent to `map()` is `lapply()`. The only difference is that `map()` has four more specific variants: `map_lgl()`, `map_int()`, `map_dbl()`, and `map_chr()` which returns an atomic vector of the specified type and not a list like `lapply()`. Base R has two apply functions `sapply()` & `vapply()`. Avoid `sapply()` because it tries to simplify the result, which makes it difficult to program with. If you don't want to use `purrr`, it is recommend to use `vapply()`. For example, the equivalent to `map_dbl(x, mean, na.rm = TRUE)` is `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`.
+
+::: panel-tabset
+
+## `purrr`
+```{.r}
+# vector operation
+map(1:3, function(x) x * 2) 
+map(1:3, ~ runif(2)) # all purrr functions translate formulas into function
+
+# data.frame
+map(mtcars, mean) 
+map_dbl(mtcars, mean)
+map_dbl(mtcars, function(x) length(unique(x)))
+map_dbl(mtcars, ~ length(unique(.x)))
+```
+
+## `base`
+```{.r}
+# vector operation
+lapply(1:3, unction(x) x * 2)
+lapply(1:3, function(x) runif(2))
+
+# data.frame
+lapply(mtcars, mean) 
+apply(mtcars, 2, mean)
+apply(mtcars, 2, function(x) length(unique(x)))
+```
+:::
+
+::: {.callout-warning}
+One needs to know the expected output type. It’s often useful to switch back to `map()`, because it can accept any type of output.
+:::
+
+## Extractions
+
+The map functions have shortcuts for extracting elements from a vector, powered by  `purrr::pluck()`. You can use
+
+- a character vector to select elements by name
+- an integer vector to select by position or 
+- a list to select by both name and position. 
+
+```{.r}
+x <- list(
+  list(-1, x = 1, y = c(2), z = "a"),
+  list(-2, x = 4, y = c(5, 6), z = "b"),
+  list(-3, x = 8, y = c(9, 10, 11)))
+x
+```
+
+::: panel-tabset
+
+## `purrr`
+```{.r}
+map_dbl(x, "x") # select by name
+map_dbl(x, 1) # select by position
+map_dbl(x, list("y", 1)) # select by both
+map_chr(x, "z") # error if a component doesn't exist
+map_chr(x, "z", .default = NA)
+unlist(map(x, "z")) # the safer way
+```
+
+## `base`
+```{.r}
+as.numeric(unlist(lapply(x, function(e) e["x"]))) # select by name
+as.numeric(unlist(lapply(x, function(e) e[1]))) # select by position
+as.numeric(lapply(x, function(e) e["y"][[1]][1])) # select by both
+as.character(unlist(lapply(x, function(e) e["z"])))
+```
+:::
+
+## Passing arguments
+
+It's often required to pass additional arguments to the function that is called.
+
+```{.r}
+(x <- list(1:5, c(1:10, NA))
+
+map_dbl(x, ~ mean(.x)) # NA
+map_dbl(x, ~ mean(.x, na.rm = TRUE))
+map_dbl(x, mean, na.rm = TRUE) # simpler form
+```
+
+Any arguments that come after `f` in the call are inserted ***after*** the data in individual calls to `f()`. Check @fig-1b. Note that these arguments are only vectorised over its first argument. If an argument after `f` is a vector, it will be passed along as is @fig-1c. 
+
+::: {.callout-important}
+It is recommended writing out the full argument names, as it makes it easier to read.
+:::
+
+So far the first argument to `map()` has always been the first argument. Imagine a scenario where the first argument should be constant, and a second argument is varying. Refer @fig-2. For example let's say we have a vector that contains a few unusual values, and we want to explore the effect of different amounts of trimming when computing the mean.
+
+::: {.column-margin}
+![Varying a second argument](diagrams/map-arg-flipped.png){#fig-2}
+:::
+
+```{.r}
+trims <- c(0, 0.1, 0.2, 0.5)
+x <- rcauchy(1000) # Cauchy Distribution
+map_dbl(trims, ~ mean(x, trim = .x))
+map_dbl(trims, function(t) mean(x, trim = t))
+```
+
+
+## Excercise
+Let's use `purrr` functions to solve a moderately realistic problem. We will fit a model using `iris` to each subgroup `Species` and extract the `R2` & `SE` from each model.
+
+::: panel-tabset
+
+## `purrr`
+```{r, message=FALSE}
+#| code-fold: false
+#| column: margin
+library(dplyr)
+library(purrr)
+
+split(iris[, 1:4], iris$Species) %>%
+  map(~ lm(Sepal.Length ~ ., data = .x)) %>%
+  map(summary) %>%
+  map(function(x) c(intercept = coef(x)[["(Intercept)", "Estimate"]],
+                    se = x[["sigma"]], R2 = x[["r.squared"]], 
+                    R2adj = x[["adj.r.squared"]])) %>%
+  map(round, 2) %>% 
+  bind_rows(.id = "model")
+```
+
+## `base`
+```{r, message=FALSE}
+#| code-fold: false
+#| column: margin
+library(dplyr)
+
+split(iris[, 1:4], iris$Species) %>%
+  lapply(function(x) lm(Sepal.Length ~ ., data = x)) %>% 
+  lapply(summary) %>% 
+  lapply(function(x) c(intercept = coef(x)[["(Intercept)", "Estimate"]],
+                       se = x[["sigma"]], R2 = x[["r.squared"]], 
+                       R2adj = x[["adj.r.squared"]])) %>% 
+  lapply(round, 2) %>% 
+  bind_rows(.id = "model")
+```
+:::
+
+## Advanced map variants
+

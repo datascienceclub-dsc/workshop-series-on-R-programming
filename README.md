@@ -35,6 +35,10 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 
 *Main focus on family of base `apply` functions, R package `purrr` & `dplyr:::rowwise` with a bonus talk on R package `gt` & latex templates if time permits.*
 
+## Prerequisites
+
+* `tidyverse`
+
 ## References 
 
 * <http://adv-r.had.co.nz>
