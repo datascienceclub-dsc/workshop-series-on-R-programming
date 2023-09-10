@@ -9,7 +9,7 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 
 ## Day 1 sessions: Friday, September 15 2023
 
-| #  | Schedule      | Topic                            | Resource person |
+| #   | Schedule      | Topic                            | Resource person |
 |-----|---------------|----------------------------------|-----------------|
 | 1   | 09:00 - 09:30 | Introduction to RStudio & GitHub | Mahesh          |
 | 2   | 09:30 - 10:30 | Basic programming with R         | Rasin           |
