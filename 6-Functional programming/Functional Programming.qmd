@@ -20,7 +20,7 @@ format:
     toc-location: left
     number-sections: true
     number-depth: 3
-    code-fold: true
+    code-fold: false
     code-summary: "show code"
     code-annotations: below
     code-copy: true
@@ -55,7 +55,7 @@ Calculating mean of random numbers generated:
 
 ``` r
 randomise <- function(f, n = 1000) f(runif(n, min = 0, max = 1))
-randomise(mean)
+randomise(mean) # iterate
 ```
 
 ## Motivation
@@ -154,7 +154,8 @@ sd(dd$a, na.rm = TRUE) # standard deviation
 
 ``` r
 descriptive_stats <- function(x, ...) {
-  c(min = min(x, ...), avg = mean(x, ...), med = median(x, ...), 
+  c(min = min(x, ...), avg = mean(x, ...), 
+    med = median(x, ...), 
     max = max(x, ...), std = sd(x, ...))
   }
 descriptive_stats(dd$a, na.rm = TRUE)
@@ -168,7 +169,8 @@ descriptive_stats(dd$c, na.rm = TRUE)
 
 ``` r
 descriptive_stats <- function(x, ...) {
-  c(min = min(x, ...), avg = mean(x, ...), med = median(x, ...), 
+  c(min = min(x, ...), avg = mean(x, ...),
+    med = median(x, ...), 
     max = max(x, ...), std = sd(x, ...))
   }
   
@@ -176,6 +178,33 @@ data.frame(lapply(dd, descriptive_stats, na.rm = TRUE))
 data.frame(apply(dd, 2, descriptive_stats)) # alternatively
 ```
 :::
+
+### Scenario 3
+
+::: column-margin
+> comparing performace between `for` loop & `apply` method with `t.test`.
+:::
+
+``` {r}
+#| label: fig-perf
+#| column: margin
+#| code-fold: false
+#| fig-cap: "loops vs. apply" 
+dd <- as.data.frame(matrix(rnorm(1000 * 50, mean = 10, sd = 3), nrow = 1000))
+dd$group <- sample(1:2, size = 1000, replace = TRUE)
+# head(dd)
+# prop.table(table(dd$group))
+
+vars <- setdiff(names(dd), "group")
+
+perf <- microbenchmark::microbenchmark(
+  loop = for(i in vars) t.test(reformulate("group", i), dd),
+  apply = apply(dd[vars], 2, function(x) t.test(x, dd["group"])),
+  times = 100)
+
+library(ggplot2)
+autoplot(perf) + theme_grey(base_size = 25)
+```
 
 ## Fundamental concept
 
@@ -562,23 +591,23 @@ The goal of maximum likelihood estimation (MLE) is to find the parameter values 
 
 $$
 P(\lambda, \mathbf{x}) = \prod_{i=1}^{n} \frac{\lambda ^ {x_i} e^{-\lambda}}{x_i!}
-$$ Let's apply a log transformation to this probability function and simplify it as much as possible: $$
+$$ Let's apply a `log` transformation to this probability function and simplify it as much as possible: $$
 \log(P(\lambda, \mathbf{x})) = \log(\lambda) \sum_{i=1}^{n} x_i - n \lambda - \sum_{i=1}^{n} \log(x_i!) 
 $$
 
 We can now turn this function into an R function.
 
 ``` r
-#' log_prob_poisson
+#' log_likelihood
 #' @param lambda shape parameter 
 #' @param x input vector
 #' @return compute the (logged) probability
 #' @examples
-#' log_prob_poisson(10, X = c(41, 30, 31, 38, 29))
-#' log_prob_poisson(20, X = c(41, 30, 31, 38, 29))
-#' log_prob_poisson(30, X = c(41, 30, 31, 38, 29))
+#' log_likelihood(10, x = c(41, 30, 31, 38, 29))
+#' log_likelihood(20, x = c(41, 30, 31, 38, 29))
+#' log_likelihood(30, x = c(41, 30, 31, 38, 29))
 #' 
-log_prob_poisson <- function(lambda, x) {
+log_likelihood <- function(lambda, x) {
   n <- length(x)
   (log(lambda) * sum(x)) - (n * lambda) - sum(lfactorial(x))
 }
@@ -588,12 +617,23 @@ log_prob_poisson <- function(lambda, x) {
 > The R function is quite elegant because R is vectorised and, because it's a statistical programming language, R comes with built-in functions like the log-factorial (`lfactorial()`).
 :::
 
-So far we've been thinking of `lambda` as fixed & known & the function gives us the *probability of getting different values of `x`*. But in real-life, we observe `x` and it is `lambda` that is unknown. We want to find the `lambda` that makes the observed `x` the most likely. That is, given `x`, what value of `lambda` gives us the highest value of `log_prob_poisson`()?
+So far we've been thinking of `lambda` as fixed & known & the function gives us the *probability of getting different values of `x`*. But in real-life, we observe `x` and it is `lambda` that is unknown. We want to find the `lambda` that makes the observed `x` the most likely. That is, given `x`, what value of `lambda` gives us the highest value of `log_likelihood`()?
 
 ``` r
-X <- c(41, 30, 31, 38, 29, 24, 30, 29, 31, 38) # <1>
-optimise(log_prob_poisson, c(0, 100), x = X, maximum = TRUE) # <2>
-```
+X <- rpois(n = 1000, lambda = 32) # <1>
+lambda <- runif(50, 0, 100) # <1>
 
-1.  Consider this vector of observations
-2.  Automates the process of finding the best value. It will evaluate `log_prob_poisson()` many times, using mathematical tricks to narrow in on the largest value as quickly as possible
+M <- map_dbl(lambda, ~log_likelihood(lambda = .x, X)) # <2>
+best_value <- lambda[M == reduce(M, max)] # <2>
+
+# alternate approach
+optimise(log_likelihood, interval = c(0, 100), x = X, maximum = TRUE) # <3>
+```
+1. Generate poisson random numbers & selecting a random set of `lambda`
+3. Finding the best value.
+4. Automates the process of finding the best value. It will evaluate `log_likelihood()` many times, using mathematical tricks to narrow in on the largest value as quickly as possible
+
+# References
+
+<https://purrr.tidyverse.org/reference/index.html>
+
