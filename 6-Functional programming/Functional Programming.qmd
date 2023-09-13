@@ -62,17 +62,18 @@ randomise(mean) # iterate
 
 ### Scenario 1
 
-::: column-margin
-> Replace all missing values (`NA`s) with 0
-:::
+> Replace missing values (`NA`s) in the data with 0
 
 ```{r, include=TRUE}
+#| code-fold: true
 #| label: tbl-dd
 #| tbl-cap: Sample data with missings
 #| tbl-colwidths: [30,70]
 #| column: margin
 set.seed(1010) # generates same sample
-dd <- setNames(data.frame(replicate(6, sample(c(1:10, NA), 6, rep = TRUE))), letters[1:6])
+dd <- setNames(
+  data.frame(replicate(6, sample(c(1:10, NA), 6, rep = TRUE))), 
+  letters[1:6])
 dd
 ```
 
@@ -133,9 +134,7 @@ This code `functionals-lapply` has five advantages over others:
 
 Refer @tbl-dd
 
-::: column-margin
-> compute the same set of descriptive statistics for each variable
-:::
+> Compute a set of descriptive statistics for each variable in the data
 
 ::: panel-tabset
 #### copy-paste
@@ -181,29 +180,38 @@ data.frame(apply(dd, 2, descriptive_stats)) # alternatively
 
 ### Scenario 3
 
-::: column-margin
-> comparing performace between `for` loop & `apply` method with `t.test`.
-:::
+> Compare performace between `for` loop & `apply` method for performing `t.test`.
 
-``` {r}
+```{r filename="loops vs. apply"}
 #| label: fig-perf
 #| column: margin
 #| code-fold: false
 #| fig-cap: "loops vs. apply" 
+
 dd <- as.data.frame(matrix(rnorm(1000 * 50, mean = 10, sd = 3), nrow = 1000))
 dd$group <- sample(1:2, size = 1000, replace = TRUE)
-# head(dd)
-# prop.table(table(dd$group))
-
-vars <- setdiff(names(dd), "group")
-
-perf <- microbenchmark::microbenchmark(
-  loop = for(i in vars) t.test(reformulate("group", i), dd),
-  apply = apply(dd[vars], 2, function(x) t.test(x, dd["group"])),
-  times = 100)
+vars <- setdiff(names(dd), "group") # <1>
+perf <- microbenchmark::microbenchmark( # <2>
+  loop = for(i in vars) t.test(reformulate("group", i), dd), # <3>
+  apply = apply(dd[vars], 2, function(x) t.test(x, dd["group"])), # <4>
+  times = 100) # <5>
 
 library(ggplot2)
 autoplot(perf) + theme_grey(base_size = 25)
+```
+1. Variables apart from `group`
+2. Function to compare performance (time consumption)
+3. `for loop` approach
+4. `apply` approach
+5. Iterating the comparison 100 times
+
+```{.r filename="copy-paste"}
+head(dd)
+prop.table(table(dd$group))
+t.test(reformulate("group", vars[1]), dd)
+t.test(reformulate("group", vars[2]), dd)
+
+# ... repeat the same for rest of the vars
 ```
 
 ## Fundamental concept
@@ -242,6 +250,20 @@ library(purrr)
 The base equivalent to `map()` is `lapply()`. The only difference is that `map()` has four more specific variants: `map_lgl()`, `map_int()`, `map_dbl()`, and `map_chr()` which returns an atomic vector of the specified type and not a list like `lapply()`. Base R has two apply functions `sapply()` & `vapply()`. Avoid `sapply()` because it tries to simplify the result, which makes it difficult to program with. If you don't want to use `purrr`, it is recommend to use `vapply()`. For example, the equivalent to `map_dbl(x, mean, na.rm = TRUE)` is `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`.
 
 ::: panel-tabset
+
+### base
+
+``` r
+# vector operation
+lapply(1:3, unction(x) x * 2)
+lapply(1:3, function(x) runif(2))
+
+# data.frame
+lapply(mtcars, mean) 
+apply(mtcars, 2, mean)
+apply(mtcars, 2, function(x) length(unique(x)))
+```
+
 ### purrr
 
 ``` r
@@ -256,18 +278,6 @@ map_dbl(mtcars, function(x) length(unique(x)))
 map_dbl(mtcars, ~ length(unique(.x)))
 ```
 
-### base
-
-``` r
-# vector operation
-lapply(1:3, unction(x) x * 2)
-lapply(1:3, function(x) runif(2))
-
-# data.frame
-lapply(mtcars, mean) 
-apply(mtcars, 2, mean)
-apply(mtcars, 2, function(x) length(unique(x)))
-```
 :::
 
 ::: callout-warning
@@ -291,6 +301,16 @@ x
 ```
 
 ::: panel-tabset
+
+### base
+
+``` r
+as.numeric(unlist(lapply(x, function(e) e["x"]))) # select by name
+as.numeric(unlist(lapply(x, function(e) e[1]))) # select by position
+as.numeric(lapply(x, function(e) e["y"][[1]][1])) # select by both
+as.character(unlist(lapply(x, function(e) e["z"])))
+```
+
 ### purrr
 
 ``` r
@@ -302,14 +322,6 @@ map_chr(x, "z", .default = NA)
 unlist(map(x, "z")) # the safer way
 ```
 
-### base
-
-``` r
-as.numeric(unlist(lapply(x, function(e) e["x"]))) # select by name
-as.numeric(unlist(lapply(x, function(e) e[1]))) # select by position
-as.numeric(lapply(x, function(e) e["y"][[1]][1])) # select by both
-as.character(unlist(lapply(x, function(e) e["z"])))
-```
 :::
 
 ## Passing arguments
@@ -344,41 +356,64 @@ map_dbl(trims, ~ mean(x, trim = .x))
 map_dbl(trims, function(t) mean(x, trim = t))
 ```
 
-### Excercise
+## Excercise
 
 Let's use `purrr` functions to solve a moderately realistic problem. We will fit a model using `iris` to each subgroup `Species` and extract the `R2` & `SE` from each model.
 
+Steps performed: 
+
+1. Split `iris` by `Species` - creates a list of 4 `data.frames`
+2. Fit a linear model for each data split with the formula: `Sepal.Length ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width`
+3. Extract performance metrics from each model as mentioned above.
+4. Round the results up to 2 decimal place.
+5. Combine the results into one table for comparison.
+
 ::: panel-tabset
-#### purrr
-
-```{r, message=FALSE}
-#| label: tbl-modelperf1
-#| tbl-cap: model performance
-#| code-fold: false
-#| column: margin
-library(dplyr)
-library(purrr)
-
-split(iris[, 1:4], iris$Species) %>% # <1>
-  map(~ lm(Sepal.Length ~ ., data = .x)) %>% # <2>
-  map(summary) %>% # <3>
-  map(function(x) c(intercept = coef(x)[["(Intercept)", "Estimate"]], # <3>
-                    se = x[["sigma"]], R2 = x[["r.squared"]], # <3>
-                    R2adj = x[["adj.r.squared"]])) %>% # <3>
-  map(round, 2) %>% # <4>
-  bind_rows(.id = "model") # <5>
-```
-
-1.  Splitting `iris` by `Species` - creates a list of 4 `data.frames`
-2.  Fit a linear model for each data split
-3.  Extract performance metrics
-4.  Rounding the results up to 2 decimals.
-5.  Bind them to a single `data.frame`
 
 #### base
 
 ```{r, message=FALSE}
-#| label: tbl-modelperf2
+#| label: tbl-modelperfbase
+#| tbl-cap: model performance
+#| code-fold: false
+#| column: margin
+
+# data and model calibration
+dd_list <- split(iris[, 1:4], iris$Species)
+setosa <- summary(lm(Sepal.Length ~ ., data = dd_list[["setosa"]]))
+versicolor <- summary(lm(Sepal.Length ~ ., data = dd_list[["versicolor"]]))
+virginica <- summary(lm(Sepal.Length ~ ., data = dd_list[["virginica"]]))
+
+# preparing final output as desired
+models <- rbind.data.frame(
+  cbind.data.frame(
+    model = "setosa",
+    intercept = coef(setosa)[["(Intercept)", "Estimate"]],
+    se = setosa[["sigma"]], R2 = setosa[["r.squared"]],
+    R2adj = setosa[["adj.r.squared"]]),
+  cbind.data.frame(
+    model = "versicolor", 
+    intercept = coef(versicolor)[["(Intercept)", "Estimate"]],
+    se = versicolor[["sigma"]], R2 = versicolor[["r.squared"]],
+    R2adj = versicolor[["adj.r.squared"]]),
+  cbind.data.frame(
+    model = "virginica", 
+    intercept = coef(virginica)[["(Intercept)", "Estimate"]],
+    se = virginica[["sigma"]], R2 = virginica[["r.squared"]],
+    R2adj = virginica[["adj.r.squared"]]))
+
+# some cosmetics 
+models$intercept <- round(models$intercept, 2)
+models$se <- round(models$se, 2)
+models$R2 <- round(models$R2, 2)
+models$R2adj <- round(models$R2adj, 2)
+models
+```
+
+#### lapply
+
+```{r, message=FALSE}
+#| label: tbl-modelperflapply
 #| tbl-cap: model performance
 #| code-fold: false
 #| column: margin
@@ -393,6 +428,27 @@ split(iris[, 1:4], iris$Species) %>%
   lapply(round, 2) %>%
   bind_rows(.id = "model") 
 ```
+
+#### purrr
+
+```{r, message=FALSE}
+#| label: tbl-modelperfpurrr
+#| tbl-cap: model performance
+#| code-fold: false
+#| column: margin
+library(dplyr)
+library(purrr)
+
+split(iris[, 1:4], iris$Species) %>% 
+  map(~ lm(Sepal.Length ~ ., data = .x)) %>% 
+  map(summary) %>% 
+  map(function(x) c(intercept = coef(x)[["(Intercept)", "Estimate"]], 
+                    se = x[["sigma"]], R2 = x[["r.squared"]], 
+                    R2adj = x[["adj.r.squared"]])) %>% 
+  map(round, 2) %>% 
+  bind_rows(.id = "model") 
+```
+
 :::
 
 ## Map family
@@ -522,13 +578,6 @@ The first `reduce()` variant is `accumulate()` which it returns all the intermed
 :::
 
 ::: panel-tabset
-### reduce
-
-```{r}
-#| code-fold: false
-# accumulate(x, intersect)
-reduce(x, intersect)
-```
 
 ### copy-paste
 
@@ -551,6 +600,15 @@ for (i in 2:length(x)) {
 }
 out
 ```
+
+### reduce
+
+```{r}
+#| code-fold: false
+# accumulate(x, intersect)
+reduce(x, intersect)
+```
+
 :::
 
 ::: column-margin
@@ -602,10 +660,8 @@ We can now turn this function into an R function.
 #' @param lambda shape parameter 
 #' @param x input vector
 #' @return compute the (logged) probability
-#' @examples
-#' log_likelihood(10, x = c(41, 30, 31, 38, 29))
-#' log_likelihood(20, x = c(41, 30, 31, 38, 29))
-#' log_likelihood(30, x = c(41, 30, 31, 38, 29))
+#' @example
+#' log_likelihood(0.3, x = c(2, 1, 3, 0, 2))
 #' 
 log_likelihood <- function(lambda, x) {
   n <- length(x)
@@ -620,7 +676,7 @@ log_likelihood <- function(lambda, x) {
 So far we've been thinking of `lambda` as fixed & known & the function gives us the *probability of getting different values of `x`*. But in real-life, we observe `x` and it is `lambda` that is unknown. We want to find the `lambda` that makes the observed `x` the most likely. That is, given `x`, what value of `lambda` gives us the highest value of `log_likelihood`()?
 
 ``` r
-X <- rpois(n = 1000, lambda = 32) # <1>
+X <- rpois(n = 1000, lambda = 0.3) # <1>
 lambda <- runif(50, 0, 100) # <1>
 
 M <- map_dbl(lambda, ~log_likelihood(lambda = .x, X)) # <2>
@@ -629,11 +685,10 @@ best_value <- lambda[M == reduce(M, max)] # <2>
 # alternate approach
 optimise(log_likelihood, interval = c(0, 100), x = X, maximum = TRUE) # <3>
 ```
-1. Generate poisson random numbers & selecting a random set of `lambda`
-3. Finding the best value.
-4. Automates the process of finding the best value. It will evaluate `log_likelihood()` many times, using mathematical tricks to narrow in on the largest value as quickly as possible
+1.  Generate poisson random numbers & selecting a random set of `lambda`
+2.  Finding the best value.
+3.  Automates the process of finding the best value. It will evaluate `log_likelihood()` many times, using mathematical tricks to narrow in on the largest value as quickly as possible
 
 # References
 
 <https://purrr.tidyverse.org/reference/index.html>
-
