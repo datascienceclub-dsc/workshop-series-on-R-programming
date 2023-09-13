@@ -1,16 +1,24 @@
 # Reference ====
-# For online documentation refer : https://r4ds.had.co.nz 
-browseVignettes(package = "dplyr")
+#' installation: install.packages("dplyr")
+#' Book : https://r4ds.had.co.nz 
+#' Website https://dplyr.tidyverse.org
+
+browseVignettes(package = "dplyr") # R package documentations
+
+#' comparison with base operations
+#' https://dplyr.tidyverse.org/articles/base.html
 
 # 1. About ====
 utils::packageVersion("dplyr") 
 
 # 2. Setup ====
 
-# _2.1 Initialize ====
+## 2.1 Initialize ====
+#' dtplyr, dbplyr, etc. are alternative backends to work with large dat.
 library(dplyr)
 
-# _2.2 Data ====
+## 2.2 Data ====
+
 if (FALSE) {
   # Data sets related to flights that departed from NYC in 2013
   install.packages("nycflights13")
@@ -22,74 +30,84 @@ if (FALSE) {
   ?storms # ?pollution; ?cases: ?tb
 }
 
-df <- iris %>% as_tibble()
+?iris # Edgar Anderson's Iris Data
+dd <- iris %>% as_tibble()
+dd
 
 # 3. Operations ====
 ?select # Extract existing variables
 ?filter # Extract existing observations
 ?mutate # Derive new variables
 ?summarise # Changing the unit of analysis --> applying statistics
-?arrange
-?group_by
-?across
+?arrange # Order rows using column values
+?group_by # Group by one or more variables
+?across # Apply a function (or functions) across multiple columns
 
-# _3.1 select ====
-df
-names(df)
-select(df, Sepal.Length, Petal.Length)
+# args(summarize); formals(summarize)
 
-df %>% select(Sepal.Length, Petal.Length) # accessing few columns
-df %>% select(everything()) # all columns
-df %>% select(-Sepal.Length, -Petal.Length) # select everything by -...
-df %>% select(Sepal.Length:Petal.Length) # selection range
-df %>% select(contains("Length")) # column names contains "chr_string"
-df %>% select(matches("\\.")) # column matching a regular expression
-df %>% select(starts_with("P")) # column name starts with "chr_string"
-df %>% select(ends_with("s")) # column name ends with "chr_string"
+## 3.1 select ====
+dd
+names(dd) # column names
+select(dd, Sepal.Length, Petal.Length) # without pipe 
 
-# bonus --> rename()
-df %>% rename(SL = Sepal.Length, PL = Petal.Length)
+dplyr::`%>%` # pipe operation exported from package `magrittr`
 
-df %>% select(SL = Sepal.Length, PL = Petal.Length)
-df %>% select(SL = Sepal.Length, PL = Petal.Length, everything())
+dd %>% select(Sepal.Length, Petal.Length) # accessing few columns
+dd %>% select(everything()) # all columns
+dd %>% select(-Sepal.Length, -Petal.Length) # select everything by -...
+dd %>% select(Sepal.Length:Petal.Length) # selection range
+dd %>% select(contains("Length")) # column names contains "chr_string"
+dd %>% select(matches("\\.")) # column matching a regular expression
+dd %>% select(starts_with("P")) # column name starts with "chr_string"
+dd %>% select(ends_with("s")) # column name ends with "chr_string"
 
-# _3.2 filter ====
-df %>% nrow
-df %>% filter(Sepal.Length > 5) # single filter
-df %>% filter(Sepal.Length > 5, Species == "versicolor") # multiple filters
+# renaming columns
+dd %>% select(SL = Sepal.Length, PL = Petal.Length)
 
-# you can use any following logical tests in R
-?Comparison
-?base:::Logic
+dd %>% select(SL = Sepal.Length, PL = Petal.Length, everything())
+dd %>% rename(SL = Sepal.Length, PL = Petal.Length) # alternative
 
-# _3.3 mutate ====
-# These are element wise/ row wise operations
-df %>% ncol
+## 3.2 filter ====
+#' you can use any following logical tests in R
+#' ?Comparison
+#' ?base:::Logic
 
-df %>% mutate(ratio = Sepal.Length/Petal.Length) # single transformation
-df %>% mutate(ratio = Sepal.Length/Petal.Length,
+dd %>% nrow
+dd %>% filter(Sepal.Length > 5) # single filter
+dd %>% filter(Sepal.Length > 5, Species == "versicolor") # multiple filters
+
+## 3.3 transformations ====
+#' These are element wise/ row wise operations
+#' CAUTION: careful with non-vectorized function
+dd %>% ncol
+
+dd %>% mutate(ratio = Sepal.Length/Petal.Length) # single transformation
+dd %>% mutate(ratio = Sepal.Length/Petal.Length,
               SepalLength2 = Sepal.Length^2) # multiple transformation
 
-# some useful mutate functions
-# Assignment : cume_dist(), dense_rank(), percent_rank(), ...
-df %>% mutate(
+#' some useful transformation functions
+#' Notice the difference between mutate() & transmute() ?
+#' 
+dd %>% transmute(
+  Sepal.Length,
   Max = pmax(Sepal.Width, Petal.Width), # element wise maximum --> unlike max()
   Min = pmin(Sepal.Width, Petal.Width), # element wise minimum --> unlike min()
   Between = between(Sepal.Length, left = 4, right = 5), # are values between left & right ?
-  Lead = lead(Sepal.Length), # copy with values one position down
-  Lag = lag(Sepal.Length), # copy with values one position up
-  SepalLengthGrp = ntile(Sepal.Length, n = 10)) # group vector into n equal buckets 
+  sepal_length_lead = lead(Sepal.Length), # copy with values one position down
+  sepal_length_lag = lag(Sepal.Length), # copy with values one position up
+  sepal_length_grp = ntile(Sepal.Length, n = 10)) %>% # group vector into n equal buckets 
+  print(width = Inf)
 
-# Note: difference between mutate() & transmute() ?
+#' look for: cume_dist(), dense_rank(), percent_rank(), ...
 
-# _3.4 summarise ====
-# applicable for only non character and factor variables
+## 3.4 summarise ====
+#' applicable for only non character and factor variables
 
-df %>% summarise(avgSepalLength = mean(Sepal.Length))
+dd %>% summarise(avg_sepal_length = mean(Sepal.Length))
 
 select_variable <- "Sepal.Length"
 
-df %>% 
+dd %>% 
   select(v = all_of(select_variable)) %>% 
   summarise(Variable = all_of(select_variable),
             N = n(), # number of observations
@@ -105,26 +123,26 @@ df %>%
             Last = last(v), # last observation of the vector
             Std = sd(v)) # standard deviations
 
-# _3.5 arrange ====
-df %>% print(n = 4)
-df %>% arrange(Sepal.Length) %>% print(n = 4)
-df %>% arrange(desc(Sepal.Length)) %>% print(n = 4)
-df %>% arrange(Species, Sepal.Length) %>% print(n = 4)
-df %>% arrange(desc(Species), Sepal.Length) %>% print(n = 4)
+## 3.5 arrange ====
+dd %>% print(n = 4)
+dd %>% arrange(Sepal.Length) %>% print(n = 4)
+dd %>% arrange(desc(Sepal.Length)) %>% print(n = 4)
+dd %>% arrange(Species, Sepal.Length) %>% print(n = 4)
+dd %>% arrange(desc(Species), Sepal.Length) %>% print(n = 4)
 
-# _3.6 group_by ====
+## 3.6 group_by ====
 # --> used along with summarise()
-df %>% count(Species)
+dd %>% count(Species)
 
-df %>% 
+dd %>% 
   group_by(Species) %>% 
   summarise(Mean = mean(Sepal.Length))
 
-df %>% 
+dd %>% 
   group_by(Species) %>% 
   summarise_all(mean)
 
-df %>% 
+dd %>% 
   mutate(SepalLength5 = Sepal.Length > 5) %>% 
   group_by(Species, SepalLength5) %>% 
   summarise(n = n(),
@@ -132,45 +150,45 @@ df %>%
             stdPL = sd(Petal.Length))
 # Note : use ungroup() to apply operations at row level again.
 
-# _3.7 across ====
+## 3.7 across ====
 
-# __3.7.1 across with mutate ====
-df %>% mutate(across(.fns = round))
-df %>% mutate(across(-Species, .fns = round))
-df %>% mutate(across(where(is.factor), .fns = as.integer))
-df %>% mutate(across(starts_with("Petal"), .fns = mean))
+### 3.7.1 across with mutate ====
+dd %>% mutate(across(.fns = round))
+dd %>% mutate(across(-Species, .fns = round))
+dd %>% mutate(across(where(is.factor), .fns = as.integer))
+dd %>% mutate(across(starts_with("Petal"), .fns = mean))
 
-# __3.7.2 across with group_by & mutate ====
-df %>% 
+### 3.7.2 across with group_by & mutate ====
+dd %>% 
   group_by(Species) %>% 
   mutate(across(starts_with("Petal"), mean))
 
-df %>% 
+dd %>% 
   group_by(Species) %>% 
   mutate(across(starts_with("Petal"),
                 list(avg = mean, std = sd),
                 .names = "{.col}.{.fn}")) %>% 
   print(width = Inf)
 
-# __3.7.3 across with group_by & summarise ====
-df %>% 
+### 3.7.3 across with group_by & summarise ====
+dd %>% 
   group_by(Species) %>% 
   summarise(across(starts_with("Petal"), mean))
 
-df %>%
+dd %>%
   group_by(Species) %>%
   summarise(across(starts_with("Petal"), 
                    list(avg = mean, std = sd),
                    .names = "{.col}.{.fn}"))
 
-# _3.8 if_any and if_all ====
-df %>% filter(if_any(ends_with("Width"), ~ . > 4))
-df %>% filter(if_all(ends_with("Width"), ~ . > 2))
+## 3.8 if_any and if_all ====
+dd %>% filter(if_any(ends_with("Width"), ~ . > 4))
+dd %>% filter(if_all(ends_with("Width"), ~ . > 2))
 
 # 4 The pipe %>% operator ====
 # --> narrates the story
-df %>% dim
-df %>% 
+dd %>% dim
+dd %>% 
   select(Sepal.Length:Petal.Length) %>% 
   mutate(ratio = Sepal.Length/Petal.Length) %>% 
   filter(Sepal.Length > 5) %>% 
@@ -179,53 +197,55 @@ df %>%
 
 # 5. Joining data ====
 
-(df1 <- tibble(id = 1:5, x = runif(5), y = x * 2))
-(df2 <- tibble(id = 3:7, x = runif(5), y = sqrt(x), z = log(y)))
+(d1 <- tibble(id = 1:5, x = runif(5), y = x * 2))
+(d2 <- tibble(id = 3:7, x = runif(5), y = sqrt(x), z = log(y)))
 
-# _5.1 bind_rows ====
-bind_rows(df1, df2)
-df1 %>% bind_rows(df2)
+## 5.1 bind_rows ====
+bind_rows(d1, d2)
+d1 %>% bind_rows(d2)
 
-# _5.2 bind_cols ====
-df1 %>% bind_cols(df2)
-df1 %>% bind_cols(df2, .name_repair = make.names)
+## 5.2 bind_cols ====
+d1 %>% bind_cols(d2)
+d1 %>% bind_cols(d2, .name_repair = make.names)
 
-# _5.3 union ====
-df1 %>% union(df2)
-df1 %>% union(df2 %>% select(-z))
+## 5.3 union ====
+d1 %>% union(d2)
+d1 %>% union(d2 %>% select(-z))
 
-# _5.4 intersect ====
-df1 %>% intersect(df2)
-df1 %>% select(id) %>% intersect(df2 %>% select(id))
+## 5.4 intersect ====
+d1 %>% intersect(d2)
+d1 %>% select(id) %>% intersect(d2 %>% select(id))
 
-# _5.5 setdiff ====
-df1 %>% setdiff(df2)
-df1 %>% setdiff(df2 %>% select(-z))
-df2 %>% select(-z) %>% setdiff(df1)
+## 5.5 setdiff ====
+d1 %>% setdiff(d2)
+d1 %>% setdiff(d2 %>% select(-z))
+d2 %>% select(-z) %>% setdiff(d1)
 
-# _5.6 left_join ====
-df1 %>% left_join(df2)
-df1 %>% left_join(df2, by = "id")
-df1 %>% left_join(df2, by = "id", suffix = c(".df1", ".df2"))
+## 5.6 left_join ====
+d1 %>% left_join(d2)
+d1 %>% left_join(d2, by = "id")
+d1 %>% left_join(d2, by = "id", suffix = c(".d1", ".d2"))
 
-# _5.7 right_join ====
-df1 %>% right_join(df2, by = "id", suffix = c(".df1", ".df2"))
+## 5.7 right_join ====
+d1 %>% right_join(d2, by = "id", suffix = c(".d1", ".d2"))
 
-# _5.8 inner_join ====
-df1 %>% inner_join(df2, by = "id", suffix = c(".df1", ".df2"))
+## 5.8 inner_join ====
+d1 %>% inner_join(d2, by = "id", suffix = c(".d1", ".d2"))
 
-# _5.9 semi_join ====
-df1 %>% semi_join(df2, by = "id")
-df2 %>% semi_join(df1, by = "id")
+## 5.9 semi_join ====
+d1 %>% semi_join(d2, by = "id")
+d2 %>% semi_join(d1, by = "id")
 
-# _5.10 anti_join ====
-df1 %>% anti_join(df2, by = "id")
-df2 %>% anti_join(df1, by = "id")
+## 5.10 anti_join ====
+d1 %>% anti_join(d2, by = "id")
+d2 %>% anti_join(d1, by = "id")
 
 # 6. Dessert (tidyr) ==== 
 
-# _6.1 gather ====
+## 6.1 Pivot ====
 
-# _6.2 spread ====
+# gather 
+
+# spread 
 
 
