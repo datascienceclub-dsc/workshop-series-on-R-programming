@@ -199,13 +199,14 @@ perf <- microbenchmark::microbenchmark( # <2>
 library(ggplot2)
 autoplot(perf) + theme_grey(base_size = 25)
 ```
-1. Variables apart from `group`
-2. Function to compare performance (time consumption)
-3. `for loop` approach
-4. `apply` approach
-5. Iterating the comparison 100 times
 
-```{.r filename="copy-paste"}
+1.  Variables apart from `group`
+2.  Function to compare performance (time consumption)
+3.  `for loop` approach
+4.  `apply` approach
+5.  Iterating the comparison 100 times
+
+``` {.r filename="copy-paste"}
 head(dd)
 prop.table(table(dd$group))
 t.test(reformulate("group", vars[1]), dd)
@@ -250,7 +251,6 @@ library(purrr)
 The base equivalent to `map()` is `lapply()`. The only difference is that `map()` has four more specific variants: `map_lgl()`, `map_int()`, `map_dbl()`, and `map_chr()` which returns an atomic vector of the specified type and not a list like `lapply()`. Base R has two apply functions `sapply()` & `vapply()`. Avoid `sapply()` because it tries to simplify the result, which makes it difficult to program with. If you don't want to use `purrr`, it is recommend to use `vapply()`. For example, the equivalent to `map_dbl(x, mean, na.rm = TRUE)` is `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`.
 
 ::: panel-tabset
-
 ### base
 
 ``` r
@@ -277,7 +277,6 @@ map_dbl(mtcars, mean)
 map_dbl(mtcars, function(x) length(unique(x)))
 map_dbl(mtcars, ~ length(unique(.x)))
 ```
-
 :::
 
 ::: callout-warning
@@ -301,7 +300,6 @@ x
 ```
 
 ::: panel-tabset
-
 ### base
 
 ``` r
@@ -321,7 +319,6 @@ map_chr(x, "z") # error if a component doesn't exist
 map_chr(x, "z", .default = NA)
 unlist(map(x, "z")) # the safer way
 ```
-
 :::
 
 ## Passing arguments
@@ -360,16 +357,15 @@ map_dbl(trims, function(t) mean(x, trim = t))
 
 Let's use `purrr` functions to solve a moderately realistic problem. We will fit a model using `iris` to each subgroup `Species` and extract the `R2` & `SE` from each model.
 
-Steps performed: 
+Steps performed:
 
-1. Split `iris` by `Species` - creates a list of 4 `data.frames`
-2. Fit a linear model for each data split with the formula: `Sepal.Length ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width`
-3. Extract performance metrics from each model as mentioned above.
-4. Round the results up to 2 decimal place.
-5. Combine the results into one table for comparison.
+1.  Split `iris` by `Species` - creates a list of 4 `data.frames`
+2.  Fit a linear model for each data split with the formula: `Sepal.Length ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width`
+3.  Extract performance metrics from each model as mentioned above.
+4.  Round the results up to 2 decimal place.
+5.  Combine the results into one table for comparison.
 
 ::: panel-tabset
-
 #### base
 
 ```{r, message=FALSE}
@@ -448,7 +444,6 @@ split(iris[, 1:4], iris$Species) %>%
   map(round, 2) %>% 
   bind_rows(.id = "model") 
 ```
-
 :::
 
 ## Map family
@@ -578,7 +573,6 @@ The first `reduce()` variant is `accumulate()` which it returns all the intermed
 :::
 
 ::: panel-tabset
-
 ### copy-paste
 
 ```{r}
@@ -608,7 +602,6 @@ out
 # accumulate(x, intersect)
 reduce(x, intersect)
 ```
-
 :::
 
 ::: column-margin
@@ -685,6 +678,7 @@ best_value <- lambda[M == reduce(M, max)] # <2>
 # alternate approach
 optimise(log_likelihood, interval = c(0, 100), x = X, maximum = TRUE) # <3>
 ```
+
 1.  Generate poisson random numbers & selecting a random set of `lambda`
 2.  Finding the best value.
 3.  Automates the process of finding the best value. It will evaluate `log_likelihood()` many times, using mathematical tricks to narrow in on the largest value as quickly as possible
