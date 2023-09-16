@@ -118,9 +118,11 @@ library(purrr)
 #' @examples
 #' perf(runif(100, 0, 1), 0.4)
 #' perf(rpois(100, 0.4), 0.4)
+#' perf(rpois(100, 0.4), NA)
 #' 
 perf <- function(x, target = mean(x)) {
-  
+  # stopifnot(!is.na(target))
+  if (is.na(target)) stop("stop sending stupid values")
   data.frame(bias = mean(x - target),
              mabs = mean(abs(x - target)),
              mse = mean((x - target) ^ 2),
@@ -151,7 +153,7 @@ map(sample_size, mlepois, n_iter = 1000, lambda = 0.3) %>% bind_rows
 ## Varying lambda ====
 params <- expand.grid(n_size = sample_size, lambda = c(0.2, 0.3, 0.4))
 params
-pmap(params, mlepois, n_iter = 100) %>% bind_rows()
+pmap(params, mlepois, n_iter = 1000) %>% bind_rows()
 
 # ------------------------------------------------------------------------------
 
@@ -178,7 +180,9 @@ mle <- function(n_size, n_iter, fn_rand, fn_optim, target, ...) {
   data.frame(sample = paste0("n=", n_size), perf(ll, target = target))
 }
 
-mle(n_size = 50, n_iter = 100, fn_rand = rpois, fn_optim = log_likelihood,
+mle(n_size = 50, n_iter = 100, 
+    fn_rand = rpois, 
+    fn_optim = log_likelihood,
     target = 0.3, lambda = 0.3)
 
 sample_size <- c(50, 100, 200)
