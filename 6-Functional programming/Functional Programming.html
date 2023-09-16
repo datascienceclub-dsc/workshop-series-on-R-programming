@@ -106,7 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><span class="header-section-number">2</span> Applications</a>
   <ul class="collapse">
   <li><a href="#mle" id="toc-mle" class="nav-link" data-scroll-target="#mle"><span class="header-section-number">2.1</span> MLE</a></li>
-  <li><a href="#bias-and-mse" id="toc-bias-and-mse" class="nav-link" data-scroll-target="#bias-and-mse"><span class="header-section-number">2.2</span> Bias and MSE</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3</span> References</a></li>
   </ul>
@@ -377,23 +376,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="1" data-code-cell="annotated-cell-3">Variables apart from <code>group</code></span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="3">Variables apart from <code>group</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="4" data-code-annotation="2" data-code-cell="annotated-cell-3">Function to compare performance (time consumption)</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-3" data-code-lines="4">Function to compare performance (time consumption)</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="5" data-code-annotation="3" data-code-cell="annotated-cell-3"><code>for loop</code> approach</span>
+<span data-code-annotation="3" data-code-cell="annotated-cell-3" data-code-lines="5"><code>for loop</code> approach</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="6" data-code-annotation="4" data-code-cell="annotated-cell-3"><code>apply</code> approach</span>
+<span data-code-annotation="4" data-code-cell="annotated-cell-3" data-code-lines="6"><code>apply</code> approach</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-lines="7" data-code-annotation="5" data-code-cell="annotated-cell-3">Iterating the comparison 100 times</span>
+<span data-code-annotation="5" data-code-cell="annotated-cell-3" data-code-lines="7">Iterating the comparison 100 times</span>
 </dd>
 </dl>
 </div>
@@ -1161,20 +1160,17 @@ P(\lambda, \mathbf{x}) = \prod_{i=1}^{n} \frac{\lambda ^ {x_i} e^{-\lambda}}{x_i
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1,2" data-code-annotation="1" data-code-cell="annotated-cell-17">Generate poisson random numbers &amp; selecting a random set of <code>lambda</code></span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-17" data-code-lines="1,2">Generate poisson random numbers &amp; selecting a random set of <code>lambda</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-17" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="4,5" data-code-annotation="2" data-code-cell="annotated-cell-17">Finding the best value.</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-17" data-code-lines="4,5">Finding the best value.</span>
 </dd>
 <dt data-target-cell="annotated-cell-17" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="8" data-code-annotation="3" data-code-cell="annotated-cell-17">Automates the process of finding the best value. It will evaluate <code>log_likelihood()</code> many times, using mathematical tricks to narrow in on the largest value as quickly as possible</span>
+<span data-code-annotation="3" data-code-cell="annotated-cell-17" data-code-lines="8">Automates the process of finding the best value. It will evaluate <code>log_likelihood()</code> many times, using mathematical tricks to narrow in on the largest value as quickly as possible</span>
 </dd>
 </dl>
-</section>
-<section id="bias-and-mse" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="bias-and-mse"><span class="header-section-number">2.2</span> Bias and MSE</h2>
 </section>
 </section>
 <section id="references" class="level1" data-number="3">
@@ -1671,58 +1667,58 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb37-199"><a href="#cb37-199"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb37-200"><a href="#cb37-200"></a><span class="fu">autoplot</span>(perf) <span class="sc">+</span> <span class="fu">theme_grey</span>(<span class="at">base_size =</span> <span class="dv">25</span>)</span>
 <span id="cb37-201"><a href="#cb37-201"></a><span class="in">```</span></span>
-<span id="cb37-202"><a href="#cb37-202"></a><span class="ss">1. </span>Variables apart from <span class="in">`group`</span></span>
-<span id="cb37-203"><a href="#cb37-203"></a><span class="ss">2. </span>Function to compare performance (time consumption)</span>
-<span id="cb37-204"><a href="#cb37-204"></a><span class="ss">3. </span><span class="in">`for loop`</span> approach</span>
-<span id="cb37-205"><a href="#cb37-205"></a><span class="ss">4. </span><span class="in">`apply`</span> approach</span>
-<span id="cb37-206"><a href="#cb37-206"></a><span class="ss">5. </span>Iterating the comparison 100 times</span>
-<span id="cb37-207"><a href="#cb37-207"></a></span>
-<span id="cb37-208"><a href="#cb37-208"></a><span class="in">```{.r filename="copy-paste"}</span></span>
-<span id="cb37-209"><a href="#cb37-209"></a><span class="fu">head</span>(dd)</span>
-<span id="cb37-210"><a href="#cb37-210"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(dd<span class="sc">$</span>group))</span>
-<span id="cb37-211"><a href="#cb37-211"></a><span class="fu">t.test</span>(<span class="fu">reformulate</span>(<span class="st">"group"</span>, vars[<span class="dv">1</span>]), dd)</span>
-<span id="cb37-212"><a href="#cb37-212"></a><span class="fu">t.test</span>(<span class="fu">reformulate</span>(<span class="st">"group"</span>, vars[<span class="dv">2</span>]), dd)</span>
-<span id="cb37-213"><a href="#cb37-213"></a></span>
-<span id="cb37-214"><a href="#cb37-214"></a><span class="co"># ... repeat the same for rest of the vars</span></span>
-<span id="cb37-215"><a href="#cb37-215"></a><span class="in">```</span></span>
-<span id="cb37-216"><a href="#cb37-216"></a></span>
-<span id="cb37-217"><a href="#cb37-217"></a><span class="fu">## Fundamental concept</span></span>
-<span id="cb37-218"><a href="#cb37-218"></a></span>
-<span id="cb37-219"><a href="#cb37-219"></a>We will focus on *`functionals`* provided by the <span class="co">[</span><span class="ot">purrr</span><span class="co">](https://purrr.tidyverse.org)</span> package. These functions (<span class="in">`purrr:::map()`</span>) have a consistent interface that makes it easier to understand the key ideas than their base equivalents.</span>
-<span id="cb37-220"><a href="#cb37-220"></a></span>
-<span id="cb37-221"><a href="#cb37-221"></a>::: column-margin</span>
-<span id="cb37-222"><a href="#cb37-222"></a></span>
-<span id="cb37-223"><a href="#cb37-223"></a><span class="al">![](logo_purrr.png)</span>{width="80" height="80"}</span>
-<span id="cb37-224"><a href="#cb37-224"></a></span>
-<span id="cb37-225"><a href="#cb37-225"></a>:   </span>
-<span id="cb37-226"><a href="#cb37-226"></a>:::</span>
-<span id="cb37-227"><a href="#cb37-227"></a></span>
-<span id="cb37-228"><a href="#cb37-228"></a>::: {#fig-concept layout="[<span class="co">[</span><span class="ot">42,58</span><span class="co">]</span>, <span class="co">[</span><span class="ot">46, 54</span><span class="co">]</span>]"}</span>
-<span id="cb37-229"><a href="#cb37-229"></a><span class="al">![calls the function once for each element](diagrams/map.png)</span>{#fig-map}</span>
-<span id="cb37-230"><a href="#cb37-230"></a></span>
-<span id="cb37-231"><a href="#cb37-231"></a><span class="al">![(a) with single argument of the f()](diagrams/map-arg.png)</span>{#fig-maparg}</span>
-<span id="cb37-232"><a href="#cb37-232"></a></span>
-<span id="cb37-233"><a href="#cb37-233"></a><span class="al">![(a) with multi argument of the f()](diagrams/map-arg-recycle.png)</span>{#fig-mapargrecycle}</span>
-<span id="cb37-234"><a href="#cb37-234"></a></span>
-<span id="cb37-235"><a href="#cb37-235"></a><span class="al">![calls the function once for each list](diagrams/map-list.png)</span>{#fig-maplist}</span>
-<span id="cb37-236"><a href="#cb37-236"></a></span>
-<span id="cb37-237"><a href="#cb37-237"></a>**Design of `purrr:::map()`**</span>
-<span id="cb37-238"><a href="#cb37-238"></a>:::</span>
-<span id="cb37-239"><a href="#cb37-239"></a></span>
-<span id="cb37-240"><a href="#cb37-240"></a>::: column-margin</span>
-<span id="cb37-241"><a href="#cb37-241"></a><span class="at">&gt; All map functions always return an output vector the same length as the input. Here **`map()`** refers to *"an operation that associates each element of a given set with one or more elements of a second set"*. This makes sense here because </span><span class="in">`map()`</span><span class="at"> defines a mapping from one vector to another.</span></span>
-<span id="cb37-242"><a href="#cb37-242"></a><span class="at">:::</span></span>
-<span id="cb37-243"><a href="#cb37-243"></a></span>
-<span id="cb37-244"><a href="#cb37-244"></a><span class="fu">## Base vs. purrr</span></span>
-<span id="cb37-245"><a href="#cb37-245"></a></span>
-<span id="cb37-246"><a href="#cb37-246"></a><span class="in">``` r</span></span>
-<span id="cb37-247"><a href="#cb37-247"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb37-248"><a href="#cb37-248"></a><span class="in">```</span></span>
-<span id="cb37-249"><a href="#cb37-249"></a></span>
-<span id="cb37-250"><a href="#cb37-250"></a>The base equivalent to <span class="in">`map()`</span> is <span class="in">`lapply()`</span>. The only difference is that <span class="in">`map()`</span> has four more specific variants: <span class="in">`map_lgl()`</span>, <span class="in">`map_int()`</span>, <span class="in">`map_dbl()`</span>, and <span class="in">`map_chr()`</span> which returns an atomic vector of the specified type and not a list like <span class="in">`lapply()`</span>. Base R has two apply functions <span class="in">`sapply()`</span> &amp; <span class="in">`vapply()`</span>. Avoid <span class="in">`sapply()`</span> because it tries to simplify the result, which makes it difficult to program with. If you don't want to use <span class="in">`purrr`</span>, it is recommend to use <span class="in">`vapply()`</span>. For example, the equivalent to <span class="in">`map_dbl(x, mean, na.rm = TRUE)`</span> is <span class="in">`vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`</span>.</span>
-<span id="cb37-251"><a href="#cb37-251"></a></span>
-<span id="cb37-252"><a href="#cb37-252"></a>::: panel-tabset</span>
-<span id="cb37-253"><a href="#cb37-253"></a></span>
+<span id="cb37-202"><a href="#cb37-202"></a></span>
+<span id="cb37-203"><a href="#cb37-203"></a><span class="ss">1.  </span>Variables apart from <span class="in">`group`</span></span>
+<span id="cb37-204"><a href="#cb37-204"></a><span class="ss">2.  </span>Function to compare performance (time consumption)</span>
+<span id="cb37-205"><a href="#cb37-205"></a><span class="ss">3.  </span><span class="in">`for loop`</span> approach</span>
+<span id="cb37-206"><a href="#cb37-206"></a><span class="ss">4.  </span><span class="in">`apply`</span> approach</span>
+<span id="cb37-207"><a href="#cb37-207"></a><span class="ss">5.  </span>Iterating the comparison 100 times</span>
+<span id="cb37-208"><a href="#cb37-208"></a></span>
+<span id="cb37-209"><a href="#cb37-209"></a><span class="in">``` {.r filename="copy-paste"}</span></span>
+<span id="cb37-210"><a href="#cb37-210"></a><span class="fu">head</span>(dd)</span>
+<span id="cb37-211"><a href="#cb37-211"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(dd<span class="sc">$</span>group))</span>
+<span id="cb37-212"><a href="#cb37-212"></a><span class="fu">t.test</span>(<span class="fu">reformulate</span>(<span class="st">"group"</span>, vars[<span class="dv">1</span>]), dd)</span>
+<span id="cb37-213"><a href="#cb37-213"></a><span class="fu">t.test</span>(<span class="fu">reformulate</span>(<span class="st">"group"</span>, vars[<span class="dv">2</span>]), dd)</span>
+<span id="cb37-214"><a href="#cb37-214"></a></span>
+<span id="cb37-215"><a href="#cb37-215"></a><span class="co"># ... repeat the same for rest of the vars</span></span>
+<span id="cb37-216"><a href="#cb37-216"></a><span class="in">```</span></span>
+<span id="cb37-217"><a href="#cb37-217"></a></span>
+<span id="cb37-218"><a href="#cb37-218"></a><span class="fu">## Fundamental concept</span></span>
+<span id="cb37-219"><a href="#cb37-219"></a></span>
+<span id="cb37-220"><a href="#cb37-220"></a>We will focus on *`functionals`* provided by the <span class="co">[</span><span class="ot">purrr</span><span class="co">](https://purrr.tidyverse.org)</span> package. These functions (<span class="in">`purrr:::map()`</span>) have a consistent interface that makes it easier to understand the key ideas than their base equivalents.</span>
+<span id="cb37-221"><a href="#cb37-221"></a></span>
+<span id="cb37-222"><a href="#cb37-222"></a>::: column-margin</span>
+<span id="cb37-223"><a href="#cb37-223"></a></span>
+<span id="cb37-224"><a href="#cb37-224"></a><span class="al">![](logo_purrr.png)</span>{width="80" height="80"}</span>
+<span id="cb37-225"><a href="#cb37-225"></a></span>
+<span id="cb37-226"><a href="#cb37-226"></a>:   </span>
+<span id="cb37-227"><a href="#cb37-227"></a>:::</span>
+<span id="cb37-228"><a href="#cb37-228"></a></span>
+<span id="cb37-229"><a href="#cb37-229"></a>::: {#fig-concept layout="[<span class="co">[</span><span class="ot">42,58</span><span class="co">]</span>, <span class="co">[</span><span class="ot">46, 54</span><span class="co">]</span>]"}</span>
+<span id="cb37-230"><a href="#cb37-230"></a><span class="al">![calls the function once for each element](diagrams/map.png)</span>{#fig-map}</span>
+<span id="cb37-231"><a href="#cb37-231"></a></span>
+<span id="cb37-232"><a href="#cb37-232"></a><span class="al">![(a) with single argument of the f()](diagrams/map-arg.png)</span>{#fig-maparg}</span>
+<span id="cb37-233"><a href="#cb37-233"></a></span>
+<span id="cb37-234"><a href="#cb37-234"></a><span class="al">![(a) with multi argument of the f()](diagrams/map-arg-recycle.png)</span>{#fig-mapargrecycle}</span>
+<span id="cb37-235"><a href="#cb37-235"></a></span>
+<span id="cb37-236"><a href="#cb37-236"></a><span class="al">![calls the function once for each list](diagrams/map-list.png)</span>{#fig-maplist}</span>
+<span id="cb37-237"><a href="#cb37-237"></a></span>
+<span id="cb37-238"><a href="#cb37-238"></a>**Design of `purrr:::map()`**</span>
+<span id="cb37-239"><a href="#cb37-239"></a>:::</span>
+<span id="cb37-240"><a href="#cb37-240"></a></span>
+<span id="cb37-241"><a href="#cb37-241"></a>::: column-margin</span>
+<span id="cb37-242"><a href="#cb37-242"></a><span class="at">&gt; All map functions always return an output vector the same length as the input. Here **`map()`** refers to *"an operation that associates each element of a given set with one or more elements of a second set"*. This makes sense here because </span><span class="in">`map()`</span><span class="at"> defines a mapping from one vector to another.</span></span>
+<span id="cb37-243"><a href="#cb37-243"></a><span class="at">:::</span></span>
+<span id="cb37-244"><a href="#cb37-244"></a></span>
+<span id="cb37-245"><a href="#cb37-245"></a><span class="fu">## Base vs. purrr</span></span>
+<span id="cb37-246"><a href="#cb37-246"></a></span>
+<span id="cb37-247"><a href="#cb37-247"></a><span class="in">``` r</span></span>
+<span id="cb37-248"><a href="#cb37-248"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb37-249"><a href="#cb37-249"></a><span class="in">```</span></span>
+<span id="cb37-250"><a href="#cb37-250"></a></span>
+<span id="cb37-251"><a href="#cb37-251"></a>The base equivalent to <span class="in">`map()`</span> is <span class="in">`lapply()`</span>. The only difference is that <span class="in">`map()`</span> has four more specific variants: <span class="in">`map_lgl()`</span>, <span class="in">`map_int()`</span>, <span class="in">`map_dbl()`</span>, and <span class="in">`map_chr()`</span> which returns an atomic vector of the specified type and not a list like <span class="in">`lapply()`</span>. Base R has two apply functions <span class="in">`sapply()`</span> &amp; <span class="in">`vapply()`</span>. Avoid <span class="in">`sapply()`</span> because it tries to simplify the result, which makes it difficult to program with. If you don't want to use <span class="in">`purrr`</span>, it is recommend to use <span class="in">`vapply()`</span>. For example, the equivalent to <span class="in">`map_dbl(x, mean, na.rm = TRUE)`</span> is <span class="in">`vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`</span>.</span>
+<span id="cb37-252"><a href="#cb37-252"></a></span>
+<span id="cb37-253"><a href="#cb37-253"></a>::: panel-tabset</span>
 <span id="cb37-254"><a href="#cb37-254"></a><span class="fu">### base</span></span>
 <span id="cb37-255"><a href="#cb37-255"></a></span>
 <span id="cb37-256"><a href="#cb37-256"></a><span class="in">``` r</span></span>
@@ -1749,424 +1745,415 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb37-277"><a href="#cb37-277"></a><span class="fu">map_dbl</span>(mtcars, <span class="cf">function</span>(x) <span class="fu">length</span>(<span class="fu">unique</span>(x)))</span>
 <span id="cb37-278"><a href="#cb37-278"></a><span class="fu">map_dbl</span>(mtcars, <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">unique</span>(.x)))</span>
 <span id="cb37-279"><a href="#cb37-279"></a><span class="in">```</span></span>
-<span id="cb37-280"><a href="#cb37-280"></a></span>
-<span id="cb37-281"><a href="#cb37-281"></a>:::</span>
-<span id="cb37-282"><a href="#cb37-282"></a></span>
-<span id="cb37-283"><a href="#cb37-283"></a>::: callout-warning</span>
-<span id="cb37-284"><a href="#cb37-284"></a>One needs to know the expected output type. It's often useful to switch back to <span class="in">`map()`</span>, because it can accept any type of output.</span>
-<span id="cb37-285"><a href="#cb37-285"></a>:::</span>
-<span id="cb37-286"><a href="#cb37-286"></a></span>
-<span id="cb37-287"><a href="#cb37-287"></a><span class="fu">## Extractions</span></span>
-<span id="cb37-288"><a href="#cb37-288"></a></span>
-<span id="cb37-289"><a href="#cb37-289"></a>The map functions have shortcuts for extracting elements from a vector, powered by <span class="in">`purrr::pluck()`</span>. You can use</span>
-<span id="cb37-290"><a href="#cb37-290"></a></span>
-<span id="cb37-291"><a href="#cb37-291"></a><span class="ss">-   </span>a character vector to select elements by name</span>
-<span id="cb37-292"><a href="#cb37-292"></a><span class="ss">-   </span>an integer vector to select by position or</span>
-<span id="cb37-293"><a href="#cb37-293"></a><span class="ss">-   </span>a list to select by both name and position.</span>
-<span id="cb37-294"><a href="#cb37-294"></a></span>
-<span id="cb37-295"><a href="#cb37-295"></a><span class="in">``` r</span></span>
-<span id="cb37-296"><a href="#cb37-296"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb37-297"><a href="#cb37-297"></a>  <span class="fu">list</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">2</span>), <span class="at">z =</span> <span class="st">"a"</span>),</span>
-<span id="cb37-298"><a href="#cb37-298"></a>  <span class="fu">list</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>), <span class="at">z =</span> <span class="st">"b"</span>),</span>
-<span id="cb37-299"><a href="#cb37-299"></a>  <span class="fu">list</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="at">x =</span> <span class="dv">8</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>)))</span>
-<span id="cb37-300"><a href="#cb37-300"></a>x</span>
-<span id="cb37-301"><a href="#cb37-301"></a><span class="in">```</span></span>
-<span id="cb37-302"><a href="#cb37-302"></a></span>
-<span id="cb37-303"><a href="#cb37-303"></a>::: panel-tabset</span>
+<span id="cb37-280"><a href="#cb37-280"></a>:::</span>
+<span id="cb37-281"><a href="#cb37-281"></a></span>
+<span id="cb37-282"><a href="#cb37-282"></a>::: callout-warning</span>
+<span id="cb37-283"><a href="#cb37-283"></a>One needs to know the expected output type. It's often useful to switch back to <span class="in">`map()`</span>, because it can accept any type of output.</span>
+<span id="cb37-284"><a href="#cb37-284"></a>:::</span>
+<span id="cb37-285"><a href="#cb37-285"></a></span>
+<span id="cb37-286"><a href="#cb37-286"></a><span class="fu">## Extractions</span></span>
+<span id="cb37-287"><a href="#cb37-287"></a></span>
+<span id="cb37-288"><a href="#cb37-288"></a>The map functions have shortcuts for extracting elements from a vector, powered by <span class="in">`purrr::pluck()`</span>. You can use</span>
+<span id="cb37-289"><a href="#cb37-289"></a></span>
+<span id="cb37-290"><a href="#cb37-290"></a><span class="ss">-   </span>a character vector to select elements by name</span>
+<span id="cb37-291"><a href="#cb37-291"></a><span class="ss">-   </span>an integer vector to select by position or</span>
+<span id="cb37-292"><a href="#cb37-292"></a><span class="ss">-   </span>a list to select by both name and position.</span>
+<span id="cb37-293"><a href="#cb37-293"></a></span>
+<span id="cb37-294"><a href="#cb37-294"></a><span class="in">``` r</span></span>
+<span id="cb37-295"><a href="#cb37-295"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb37-296"><a href="#cb37-296"></a>  <span class="fu">list</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">2</span>), <span class="at">z =</span> <span class="st">"a"</span>),</span>
+<span id="cb37-297"><a href="#cb37-297"></a>  <span class="fu">list</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>), <span class="at">z =</span> <span class="st">"b"</span>),</span>
+<span id="cb37-298"><a href="#cb37-298"></a>  <span class="fu">list</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="at">x =</span> <span class="dv">8</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>)))</span>
+<span id="cb37-299"><a href="#cb37-299"></a>x</span>
+<span id="cb37-300"><a href="#cb37-300"></a><span class="in">```</span></span>
+<span id="cb37-301"><a href="#cb37-301"></a></span>
+<span id="cb37-302"><a href="#cb37-302"></a>::: panel-tabset</span>
+<span id="cb37-303"><a href="#cb37-303"></a><span class="fu">### base</span></span>
 <span id="cb37-304"><a href="#cb37-304"></a></span>
-<span id="cb37-305"><a href="#cb37-305"></a><span class="fu">### base</span></span>
-<span id="cb37-306"><a href="#cb37-306"></a></span>
-<span id="cb37-307"><a href="#cb37-307"></a><span class="in">``` r</span></span>
-<span id="cb37-308"><a href="#cb37-308"></a><span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="st">"x"</span>]))) <span class="co"># select by name</span></span>
-<span id="cb37-309"><a href="#cb37-309"></a><span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="dv">1</span>]))) <span class="co"># select by position</span></span>
-<span id="cb37-310"><a href="#cb37-310"></a><span class="fu">as.numeric</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="st">"y"</span>][[<span class="dv">1</span>]][<span class="dv">1</span>])) <span class="co"># select by both</span></span>
-<span id="cb37-311"><a href="#cb37-311"></a><span class="fu">as.character</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="st">"z"</span>])))</span>
-<span id="cb37-312"><a href="#cb37-312"></a><span class="in">```</span></span>
+<span id="cb37-305"><a href="#cb37-305"></a><span class="in">``` r</span></span>
+<span id="cb37-306"><a href="#cb37-306"></a><span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="st">"x"</span>]))) <span class="co"># select by name</span></span>
+<span id="cb37-307"><a href="#cb37-307"></a><span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="dv">1</span>]))) <span class="co"># select by position</span></span>
+<span id="cb37-308"><a href="#cb37-308"></a><span class="fu">as.numeric</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="st">"y"</span>][[<span class="dv">1</span>]][<span class="dv">1</span>])) <span class="co"># select by both</span></span>
+<span id="cb37-309"><a href="#cb37-309"></a><span class="fu">as.character</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(x, <span class="cf">function</span>(e) e[<span class="st">"z"</span>])))</span>
+<span id="cb37-310"><a href="#cb37-310"></a><span class="in">```</span></span>
+<span id="cb37-311"><a href="#cb37-311"></a></span>
+<span id="cb37-312"><a href="#cb37-312"></a><span class="fu">### purrr</span></span>
 <span id="cb37-313"><a href="#cb37-313"></a></span>
-<span id="cb37-314"><a href="#cb37-314"></a><span class="fu">### purrr</span></span>
-<span id="cb37-315"><a href="#cb37-315"></a></span>
-<span id="cb37-316"><a href="#cb37-316"></a><span class="in">``` r</span></span>
-<span id="cb37-317"><a href="#cb37-317"></a><span class="fu">map_dbl</span>(x, <span class="st">"x"</span>) <span class="co"># select by name</span></span>
-<span id="cb37-318"><a href="#cb37-318"></a><span class="fu">map_dbl</span>(x, <span class="dv">1</span>) <span class="co"># select by position</span></span>
-<span id="cb37-319"><a href="#cb37-319"></a><span class="fu">map_dbl</span>(x, <span class="fu">list</span>(<span class="st">"y"</span>, <span class="dv">1</span>)) <span class="co"># select by both</span></span>
-<span id="cb37-320"><a href="#cb37-320"></a><span class="fu">map_chr</span>(x, <span class="st">"z"</span>) <span class="co"># error if a component doesn't exist</span></span>
-<span id="cb37-321"><a href="#cb37-321"></a><span class="fu">map_chr</span>(x, <span class="st">"z"</span>, <span class="at">.default =</span> <span class="cn">NA</span>)</span>
-<span id="cb37-322"><a href="#cb37-322"></a><span class="fu">unlist</span>(<span class="fu">map</span>(x, <span class="st">"z"</span>)) <span class="co"># the safer way</span></span>
-<span id="cb37-323"><a href="#cb37-323"></a><span class="in">```</span></span>
-<span id="cb37-324"><a href="#cb37-324"></a></span>
-<span id="cb37-325"><a href="#cb37-325"></a>:::</span>
-<span id="cb37-326"><a href="#cb37-326"></a></span>
-<span id="cb37-327"><a href="#cb37-327"></a><span class="fu">## Passing arguments</span></span>
-<span id="cb37-328"><a href="#cb37-328"></a></span>
-<span id="cb37-329"><a href="#cb37-329"></a>It's often required to pass additional arguments to the function that is called.</span>
-<span id="cb37-330"><a href="#cb37-330"></a></span>
-<span id="cb37-331"><a href="#cb37-331"></a><span class="in">``` r</span></span>
-<span id="cb37-332"><a href="#cb37-332"></a>(x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cn">NA</span>))</span>
-<span id="cb37-333"><a href="#cb37-333"></a><span class="fu">map_dbl</span>(x, <span class="sc">~</span> <span class="fu">mean</span>(.x)) <span class="co"># NA</span></span>
-<span id="cb37-334"><a href="#cb37-334"></a><span class="fu">map_dbl</span>(x, <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb37-335"><a href="#cb37-335"></a><span class="fu">map_dbl</span>(x, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># simpler form</span></span>
-<span id="cb37-336"><a href="#cb37-336"></a><span class="st">```</span></span>
-<span id="cb37-337"><a href="#cb37-337"></a></span>
-<span id="cb37-338"><a href="#cb37-338"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-339"><a href="#cb37-339"></a><span class="at">&gt; Any arguments that come after </span><span class="st">`</span>f<span class="st">`</span><span class="at"> in the call are inserted ***after*** the data in individual calls to </span><span class="st">`</span><span class="fu">f</span>()<span class="st">`</span><span class="at">. Check @fig-maparg. Note that these arguments are only vectorised over its first argument. If an argument after </span><span class="st">`</span>f<span class="st">`</span><span class="at"> is a vector, it will be passed along as is @fig-maplist.</span></span>
-<span id="cb37-340"><a href="#cb37-340"></a><span class="at">:::</span></span>
-<span id="cb37-341"><a href="#cb37-341"></a></span>
-<span id="cb37-342"><a href="#cb37-342"></a><span class="at">::: callout-important</span></span>
-<span id="cb37-343"><a href="#cb37-343"></a><span class="at">It is recommended writing out the full argument names, as it makes it easier to read.</span></span>
-<span id="cb37-344"><a href="#cb37-344"></a><span class="at">:::</span></span>
-<span id="cb37-345"><a href="#cb37-345"></a></span>
-<span id="cb37-346"><a href="#cb37-346"></a><span class="at">So far the first argument to </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> has always been the first argument. Imagine a scenario where the first argument should be constant, and a second argument is varying. Refer @fig-mapargflipped. For example let's say we have a vector that contains a few unusual values, and we want to explore the effect of different amounts of trimming when computing the mean.</span></span>
-<span id="cb37-347"><a href="#cb37-347"></a></span>
-<span id="cb37-348"><a href="#cb37-348"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-349"><a href="#cb37-349"></a><span class="at">![Varying a second argument](diagrams/map-arg-flipped.png){#fig-mapargflipped}</span></span>
-<span id="cb37-350"><a href="#cb37-350"></a><span class="at">:::</span></span>
-<span id="cb37-351"><a href="#cb37-351"></a></span>
-<span id="cb37-352"><a href="#cb37-352"></a><span class="st">```</span> r</span>
-<span id="cb37-353"><a href="#cb37-353"></a>trims <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>)</span>
-<span id="cb37-354"><a href="#cb37-354"></a>x <span class="ot">&lt;-</span> <span class="fu">rcauchy</span>(<span class="dv">1000</span>) <span class="co"># Cauchy Distribution</span></span>
-<span id="cb37-355"><a href="#cb37-355"></a><span class="fu">map_dbl</span>(trims, <span class="sc">~</span> <span class="fu">mean</span>(x, <span class="at">trim =</span> .x))</span>
-<span id="cb37-356"><a href="#cb37-356"></a><span class="fu">map_dbl</span>(trims, <span class="cf">function</span>(t) <span class="fu">mean</span>(x, <span class="at">trim =</span> t))</span>
-<span id="cb37-357"><a href="#cb37-357"></a><span class="st">```</span></span>
-<span id="cb37-358"><a href="#cb37-358"></a></span>
-<span id="cb37-359"><a href="#cb37-359"></a><span class="at">## Excercise</span></span>
-<span id="cb37-360"><a href="#cb37-360"></a></span>
-<span id="cb37-361"><a href="#cb37-361"></a><span class="at">Let's use </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> functions to solve a moderately realistic problem. We will fit a model using </span><span class="st">`</span>iris<span class="st">`</span><span class="at"> to each subgroup </span><span class="st">`</span>Species<span class="st">`</span><span class="at"> and extract the </span><span class="st">`</span>R2<span class="st">`</span><span class="at"> &amp; </span><span class="st">`</span>SE<span class="st">`</span><span class="at"> from each model.</span></span>
-<span id="cb37-362"><a href="#cb37-362"></a></span>
-<span id="cb37-363"><a href="#cb37-363"></a><span class="at">Steps performed: </span></span>
-<span id="cb37-364"><a href="#cb37-364"></a></span>
-<span id="cb37-365"><a href="#cb37-365"></a><span class="at">1. Split </span><span class="st">`</span>iris<span class="st">`</span><span class="at"> by </span><span class="st">`</span>Species<span class="st">`</span><span class="at"> - creates a list of 4 </span><span class="st">`</span>data.frames<span class="st">`</span></span>
-<span id="cb37-366"><a href="#cb37-366"></a><span class="at">2. Fit a linear model for each data split with the formula: </span><span class="st">`</span>Sepal.Length <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length <span class="sc">+</span> Petal.Width<span class="st">`</span></span>
-<span id="cb37-367"><a href="#cb37-367"></a><span class="at">3. Extract performance metrics from each model as mentioned above.</span></span>
-<span id="cb37-368"><a href="#cb37-368"></a><span class="at">4. Round the results up to 2 decimal place.</span></span>
-<span id="cb37-369"><a href="#cb37-369"></a><span class="at">5. Combine the results into one table for comparison.</span></span>
+<span id="cb37-314"><a href="#cb37-314"></a><span class="in">``` r</span></span>
+<span id="cb37-315"><a href="#cb37-315"></a><span class="fu">map_dbl</span>(x, <span class="st">"x"</span>) <span class="co"># select by name</span></span>
+<span id="cb37-316"><a href="#cb37-316"></a><span class="fu">map_dbl</span>(x, <span class="dv">1</span>) <span class="co"># select by position</span></span>
+<span id="cb37-317"><a href="#cb37-317"></a><span class="fu">map_dbl</span>(x, <span class="fu">list</span>(<span class="st">"y"</span>, <span class="dv">1</span>)) <span class="co"># select by both</span></span>
+<span id="cb37-318"><a href="#cb37-318"></a><span class="fu">map_chr</span>(x, <span class="st">"z"</span>) <span class="co"># error if a component doesn't exist</span></span>
+<span id="cb37-319"><a href="#cb37-319"></a><span class="fu">map_chr</span>(x, <span class="st">"z"</span>, <span class="at">.default =</span> <span class="cn">NA</span>)</span>
+<span id="cb37-320"><a href="#cb37-320"></a><span class="fu">unlist</span>(<span class="fu">map</span>(x, <span class="st">"z"</span>)) <span class="co"># the safer way</span></span>
+<span id="cb37-321"><a href="#cb37-321"></a><span class="in">```</span></span>
+<span id="cb37-322"><a href="#cb37-322"></a>:::</span>
+<span id="cb37-323"><a href="#cb37-323"></a></span>
+<span id="cb37-324"><a href="#cb37-324"></a><span class="fu">## Passing arguments</span></span>
+<span id="cb37-325"><a href="#cb37-325"></a></span>
+<span id="cb37-326"><a href="#cb37-326"></a>It's often required to pass additional arguments to the function that is called.</span>
+<span id="cb37-327"><a href="#cb37-327"></a></span>
+<span id="cb37-328"><a href="#cb37-328"></a><span class="in">``` r</span></span>
+<span id="cb37-329"><a href="#cb37-329"></a>(x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cn">NA</span>))</span>
+<span id="cb37-330"><a href="#cb37-330"></a><span class="fu">map_dbl</span>(x, <span class="sc">~</span> <span class="fu">mean</span>(.x)) <span class="co"># NA</span></span>
+<span id="cb37-331"><a href="#cb37-331"></a><span class="fu">map_dbl</span>(x, <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb37-332"><a href="#cb37-332"></a><span class="fu">map_dbl</span>(x, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># simpler form</span></span>
+<span id="cb37-333"><a href="#cb37-333"></a><span class="st">```</span></span>
+<span id="cb37-334"><a href="#cb37-334"></a></span>
+<span id="cb37-335"><a href="#cb37-335"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-336"><a href="#cb37-336"></a><span class="at">&gt; Any arguments that come after </span><span class="st">`</span>f<span class="st">`</span><span class="at"> in the call are inserted ***after*** the data in individual calls to </span><span class="st">`</span><span class="fu">f</span>()<span class="st">`</span><span class="at">. Check @fig-maparg. Note that these arguments are only vectorised over its first argument. If an argument after </span><span class="st">`</span>f<span class="st">`</span><span class="at"> is a vector, it will be passed along as is @fig-maplist.</span></span>
+<span id="cb37-337"><a href="#cb37-337"></a><span class="at">:::</span></span>
+<span id="cb37-338"><a href="#cb37-338"></a></span>
+<span id="cb37-339"><a href="#cb37-339"></a><span class="at">::: callout-important</span></span>
+<span id="cb37-340"><a href="#cb37-340"></a><span class="at">It is recommended writing out the full argument names, as it makes it easier to read.</span></span>
+<span id="cb37-341"><a href="#cb37-341"></a><span class="at">:::</span></span>
+<span id="cb37-342"><a href="#cb37-342"></a></span>
+<span id="cb37-343"><a href="#cb37-343"></a><span class="at">So far the first argument to </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> has always been the first argument. Imagine a scenario where the first argument should be constant, and a second argument is varying. Refer @fig-mapargflipped. For example let's say we have a vector that contains a few unusual values, and we want to explore the effect of different amounts of trimming when computing the mean.</span></span>
+<span id="cb37-344"><a href="#cb37-344"></a></span>
+<span id="cb37-345"><a href="#cb37-345"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-346"><a href="#cb37-346"></a><span class="at">![Varying a second argument](diagrams/map-arg-flipped.png){#fig-mapargflipped}</span></span>
+<span id="cb37-347"><a href="#cb37-347"></a><span class="at">:::</span></span>
+<span id="cb37-348"><a href="#cb37-348"></a></span>
+<span id="cb37-349"><a href="#cb37-349"></a><span class="st">```</span> r</span>
+<span id="cb37-350"><a href="#cb37-350"></a>trims <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>)</span>
+<span id="cb37-351"><a href="#cb37-351"></a>x <span class="ot">&lt;-</span> <span class="fu">rcauchy</span>(<span class="dv">1000</span>) <span class="co"># Cauchy Distribution</span></span>
+<span id="cb37-352"><a href="#cb37-352"></a><span class="fu">map_dbl</span>(trims, <span class="sc">~</span> <span class="fu">mean</span>(x, <span class="at">trim =</span> .x))</span>
+<span id="cb37-353"><a href="#cb37-353"></a><span class="fu">map_dbl</span>(trims, <span class="cf">function</span>(t) <span class="fu">mean</span>(x, <span class="at">trim =</span> t))</span>
+<span id="cb37-354"><a href="#cb37-354"></a><span class="st">```</span></span>
+<span id="cb37-355"><a href="#cb37-355"></a></span>
+<span id="cb37-356"><a href="#cb37-356"></a><span class="at">## Excercise</span></span>
+<span id="cb37-357"><a href="#cb37-357"></a></span>
+<span id="cb37-358"><a href="#cb37-358"></a><span class="at">Let's use </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> functions to solve a moderately realistic problem. We will fit a model using </span><span class="st">`</span>iris<span class="st">`</span><span class="at"> to each subgroup </span><span class="st">`</span>Species<span class="st">`</span><span class="at"> and extract the </span><span class="st">`</span>R2<span class="st">`</span><span class="at"> &amp; </span><span class="st">`</span>SE<span class="st">`</span><span class="at"> from each model.</span></span>
+<span id="cb37-359"><a href="#cb37-359"></a></span>
+<span id="cb37-360"><a href="#cb37-360"></a><span class="at">Steps performed:</span></span>
+<span id="cb37-361"><a href="#cb37-361"></a></span>
+<span id="cb37-362"><a href="#cb37-362"></a><span class="at">1.  Split </span><span class="st">`</span>iris<span class="st">`</span><span class="at"> by </span><span class="st">`</span>Species<span class="st">`</span><span class="at"> - creates a list of 4 </span><span class="st">`</span>data.frames<span class="st">`</span></span>
+<span id="cb37-363"><a href="#cb37-363"></a><span class="at">2.  Fit a linear model for each data split with the formula: </span><span class="st">`</span>Sepal.Length <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length <span class="sc">+</span> Petal.Width<span class="st">`</span></span>
+<span id="cb37-364"><a href="#cb37-364"></a><span class="at">3.  Extract performance metrics from each model as mentioned above.</span></span>
+<span id="cb37-365"><a href="#cb37-365"></a><span class="at">4.  Round the results up to 2 decimal place.</span></span>
+<span id="cb37-366"><a href="#cb37-366"></a><span class="at">5.  Combine the results into one table for comparison.</span></span>
+<span id="cb37-367"><a href="#cb37-367"></a></span>
+<span id="cb37-368"><a href="#cb37-368"></a><span class="at">::: panel-tabset</span></span>
+<span id="cb37-369"><a href="#cb37-369"></a><span class="at">#### base</span></span>
 <span id="cb37-370"><a href="#cb37-370"></a></span>
-<span id="cb37-371"><a href="#cb37-371"></a><span class="at">::: panel-tabset</span></span>
-<span id="cb37-372"><a href="#cb37-372"></a></span>
-<span id="cb37-373"><a href="#cb37-373"></a><span class="at">#### base</span></span>
-<span id="cb37-374"><a href="#cb37-374"></a></span>
-<span id="cb37-375"><a href="#cb37-375"></a><span class="st">```</span>{r, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
-<span id="cb37-376"><a href="#cb37-376"></a><span class="co">#| label: tbl-modelperfbase</span></span>
-<span id="cb37-377"><a href="#cb37-377"></a><span class="co">#| tbl-cap: model performance</span></span>
-<span id="cb37-378"><a href="#cb37-378"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb37-379"><a href="#cb37-379"></a><span class="co">#| column: margin</span></span>
-<span id="cb37-380"><a href="#cb37-380"></a></span>
-<span id="cb37-381"><a href="#cb37-381"></a><span class="co"># data and model calibration</span></span>
-<span id="cb37-382"><a href="#cb37-382"></a>dd_list <span class="ot">&lt;-</span> <span class="fu">split</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species)</span>
-<span id="cb37-383"><a href="#cb37-383"></a>setosa <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> dd_list[[<span class="st">"setosa"</span>]]))</span>
-<span id="cb37-384"><a href="#cb37-384"></a>versicolor <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> dd_list[[<span class="st">"versicolor"</span>]]))</span>
-<span id="cb37-385"><a href="#cb37-385"></a>virginica <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> dd_list[[<span class="st">"virginica"</span>]]))</span>
-<span id="cb37-386"><a href="#cb37-386"></a></span>
-<span id="cb37-387"><a href="#cb37-387"></a><span class="co"># preparing final output as desired</span></span>
-<span id="cb37-388"><a href="#cb37-388"></a>models <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(</span>
-<span id="cb37-389"><a href="#cb37-389"></a>  <span class="fu">cbind.data.frame</span>(</span>
-<span id="cb37-390"><a href="#cb37-390"></a>    <span class="at">model =</span> <span class="st">"setosa"</span>,</span>
-<span id="cb37-391"><a href="#cb37-391"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(setosa)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]],</span>
-<span id="cb37-392"><a href="#cb37-392"></a>    <span class="at">se =</span> setosa[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> setosa[[<span class="st">"r.squared"</span>]],</span>
-<span id="cb37-393"><a href="#cb37-393"></a>    <span class="at">R2adj =</span> setosa[[<span class="st">"adj.r.squared"</span>]]),</span>
-<span id="cb37-394"><a href="#cb37-394"></a>  <span class="fu">cbind.data.frame</span>(</span>
-<span id="cb37-395"><a href="#cb37-395"></a>    <span class="at">model =</span> <span class="st">"versicolor"</span>, </span>
-<span id="cb37-396"><a href="#cb37-396"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(versicolor)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]],</span>
-<span id="cb37-397"><a href="#cb37-397"></a>    <span class="at">se =</span> versicolor[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> versicolor[[<span class="st">"r.squared"</span>]],</span>
-<span id="cb37-398"><a href="#cb37-398"></a>    <span class="at">R2adj =</span> versicolor[[<span class="st">"adj.r.squared"</span>]]),</span>
-<span id="cb37-399"><a href="#cb37-399"></a>  <span class="fu">cbind.data.frame</span>(</span>
-<span id="cb37-400"><a href="#cb37-400"></a>    <span class="at">model =</span> <span class="st">"virginica"</span>, </span>
-<span id="cb37-401"><a href="#cb37-401"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(virginica)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]],</span>
-<span id="cb37-402"><a href="#cb37-402"></a>    <span class="at">se =</span> virginica[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> virginica[[<span class="st">"r.squared"</span>]],</span>
-<span id="cb37-403"><a href="#cb37-403"></a>    <span class="at">R2adj =</span> virginica[[<span class="st">"adj.r.squared"</span>]]))</span>
-<span id="cb37-404"><a href="#cb37-404"></a></span>
-<span id="cb37-405"><a href="#cb37-405"></a><span class="co"># some cosmetics </span></span>
-<span id="cb37-406"><a href="#cb37-406"></a>models<span class="sc">$</span>intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>intercept, <span class="dv">2</span>)</span>
-<span id="cb37-407"><a href="#cb37-407"></a>models<span class="sc">$</span>se <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>se, <span class="dv">2</span>)</span>
-<span id="cb37-408"><a href="#cb37-408"></a>models<span class="sc">$</span>R2 <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>R2, <span class="dv">2</span>)</span>
-<span id="cb37-409"><a href="#cb37-409"></a>models<span class="sc">$</span>R2adj <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>R2adj, <span class="dv">2</span>)</span>
-<span id="cb37-410"><a href="#cb37-410"></a>models</span>
-<span id="cb37-411"><a href="#cb37-411"></a><span class="st">```</span></span>
-<span id="cb37-412"><a href="#cb37-412"></a></span>
-<span id="cb37-413"><a href="#cb37-413"></a><span class="at">#### lapply</span></span>
-<span id="cb37-414"><a href="#cb37-414"></a></span>
-<span id="cb37-415"><a href="#cb37-415"></a><span class="st">```</span>{r, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
-<span id="cb37-416"><a href="#cb37-416"></a><span class="co">#| label: tbl-modelperflapply</span></span>
-<span id="cb37-417"><a href="#cb37-417"></a><span class="co">#| tbl-cap: model performance</span></span>
-<span id="cb37-418"><a href="#cb37-418"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb37-419"><a href="#cb37-419"></a><span class="co">#| column: margin</span></span>
-<span id="cb37-420"><a href="#cb37-420"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb37-421"><a href="#cb37-421"></a></span>
-<span id="cb37-422"><a href="#cb37-422"></a><span class="fu">split</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species) <span class="sc">%&gt;%</span></span>
-<span id="cb37-423"><a href="#cb37-423"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x) <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> x)) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-424"><a href="#cb37-424"></a>  <span class="fu">lapply</span>(summary) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-425"><a href="#cb37-425"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x) <span class="fu">c</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(x)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]], </span>
-<span id="cb37-426"><a href="#cb37-426"></a>                       <span class="at">se =</span> x[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> x[[<span class="st">"r.squared"</span>]], </span>
-<span id="cb37-427"><a href="#cb37-427"></a>                       <span class="at">R2adj =</span> x[[<span class="st">"adj.r.squared"</span>]])) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-428"><a href="#cb37-428"></a>  <span class="fu">lapply</span>(round, <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb37-429"><a href="#cb37-429"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>) </span>
-<span id="cb37-430"><a href="#cb37-430"></a><span class="st">```</span></span>
-<span id="cb37-431"><a href="#cb37-431"></a></span>
-<span id="cb37-432"><a href="#cb37-432"></a><span class="at">#### purrr</span></span>
-<span id="cb37-433"><a href="#cb37-433"></a></span>
-<span id="cb37-434"><a href="#cb37-434"></a><span class="st">```</span>{r, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
-<span id="cb37-435"><a href="#cb37-435"></a><span class="co">#| label: tbl-modelperfpurrr</span></span>
-<span id="cb37-436"><a href="#cb37-436"></a><span class="co">#| tbl-cap: model performance</span></span>
-<span id="cb37-437"><a href="#cb37-437"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb37-438"><a href="#cb37-438"></a><span class="co">#| column: margin</span></span>
-<span id="cb37-439"><a href="#cb37-439"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb37-440"><a href="#cb37-440"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb37-441"><a href="#cb37-441"></a></span>
-<span id="cb37-442"><a href="#cb37-442"></a><span class="fu">split</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-443"><a href="#cb37-443"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-444"><a href="#cb37-444"></a>  <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-445"><a href="#cb37-445"></a>  <span class="fu">map</span>(<span class="cf">function</span>(x) <span class="fu">c</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(x)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]], </span>
-<span id="cb37-446"><a href="#cb37-446"></a>                    <span class="at">se =</span> x[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> x[[<span class="st">"r.squared"</span>]], </span>
-<span id="cb37-447"><a href="#cb37-447"></a>                    <span class="at">R2adj =</span> x[[<span class="st">"adj.r.squared"</span>]])) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-448"><a href="#cb37-448"></a>  <span class="fu">map</span>(round, <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-449"><a href="#cb37-449"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>) </span>
-<span id="cb37-450"><a href="#cb37-450"></a><span class="st">```</span></span>
-<span id="cb37-451"><a href="#cb37-451"></a></span>
-<span id="cb37-452"><a href="#cb37-452"></a><span class="at">:::</span></span>
-<span id="cb37-453"><a href="#cb37-453"></a></span>
-<span id="cb37-454"><a href="#cb37-454"></a><span class="at">## Map family</span></span>
-<span id="cb37-455"><a href="#cb37-455"></a></span>
-<span id="cb37-456"><a href="#cb37-456"></a><span class="at">There are 23 primary variants of </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> but fortunately, by design of </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> we only need to learn five new ideas:</span></span>
-<span id="cb37-457"><a href="#cb37-457"></a></span>
-<span id="cb37-458"><a href="#cb37-458"></a><span class="at">-   </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at">: Returns same type as input</span></span>
-<span id="cb37-459"><a href="#cb37-459"></a><span class="at">-   </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at">: Iterate over two inputs</span></span>
-<span id="cb37-460"><a href="#cb37-460"></a><span class="at">-   </span><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at">: Iterate with an index.</span></span>
-<span id="cb37-461"><a href="#cb37-461"></a><span class="at">-   </span><span class="st">`</span><span class="fu">walk</span>()<span class="st">`</span><span class="at">: Return nothing</span></span>
-<span id="cb37-462"><a href="#cb37-462"></a><span class="at">-   </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at">: Iterate over any number of inputs</span></span>
-<span id="cb37-463"><a href="#cb37-463"></a></span>
-<span id="cb37-464"><a href="#cb37-464"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-465"><a href="#cb37-465"></a><span class="at">| arguments | list     | same_type   | nothing   |</span></span>
-<span id="cb37-466"><a href="#cb37-466"></a><span class="at">|-----------|----------|-------------|-----------|</span></span>
-<span id="cb37-467"><a href="#cb37-467"></a><span class="at">| 1         | </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at">  | </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at">  | </span><span class="st">`</span><span class="fu">walk</span>()<span class="st">`</span><span class="at">  |</span></span>
-<span id="cb37-468"><a href="#cb37-468"></a><span class="at">| 2         | </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">modify2</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">walk2</span>()<span class="st">`</span><span class="at"> |</span></span>
-<span id="cb37-469"><a href="#cb37-469"></a><span class="at">| 1 + index | </span><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">imodify</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">iwalk</span>()<span class="st">`</span><span class="at"> |</span></span>
-<span id="cb37-470"><a href="#cb37-470"></a><span class="at">| N         | </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at"> | ---         | </span><span class="st">`</span><span class="fu">pwalk</span>()<span class="st">`</span><span class="at"> |</span></span>
+<span id="cb37-371"><a href="#cb37-371"></a><span class="st">```</span>{r, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
+<span id="cb37-372"><a href="#cb37-372"></a><span class="co">#| label: tbl-modelperfbase</span></span>
+<span id="cb37-373"><a href="#cb37-373"></a><span class="co">#| tbl-cap: model performance</span></span>
+<span id="cb37-374"><a href="#cb37-374"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb37-375"><a href="#cb37-375"></a><span class="co">#| column: margin</span></span>
+<span id="cb37-376"><a href="#cb37-376"></a></span>
+<span id="cb37-377"><a href="#cb37-377"></a><span class="co"># data and model calibration</span></span>
+<span id="cb37-378"><a href="#cb37-378"></a>dd_list <span class="ot">&lt;-</span> <span class="fu">split</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species)</span>
+<span id="cb37-379"><a href="#cb37-379"></a>setosa <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> dd_list[[<span class="st">"setosa"</span>]]))</span>
+<span id="cb37-380"><a href="#cb37-380"></a>versicolor <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> dd_list[[<span class="st">"versicolor"</span>]]))</span>
+<span id="cb37-381"><a href="#cb37-381"></a>virginica <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> dd_list[[<span class="st">"virginica"</span>]]))</span>
+<span id="cb37-382"><a href="#cb37-382"></a></span>
+<span id="cb37-383"><a href="#cb37-383"></a><span class="co"># preparing final output as desired</span></span>
+<span id="cb37-384"><a href="#cb37-384"></a>models <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(</span>
+<span id="cb37-385"><a href="#cb37-385"></a>  <span class="fu">cbind.data.frame</span>(</span>
+<span id="cb37-386"><a href="#cb37-386"></a>    <span class="at">model =</span> <span class="st">"setosa"</span>,</span>
+<span id="cb37-387"><a href="#cb37-387"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(setosa)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]],</span>
+<span id="cb37-388"><a href="#cb37-388"></a>    <span class="at">se =</span> setosa[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> setosa[[<span class="st">"r.squared"</span>]],</span>
+<span id="cb37-389"><a href="#cb37-389"></a>    <span class="at">R2adj =</span> setosa[[<span class="st">"adj.r.squared"</span>]]),</span>
+<span id="cb37-390"><a href="#cb37-390"></a>  <span class="fu">cbind.data.frame</span>(</span>
+<span id="cb37-391"><a href="#cb37-391"></a>    <span class="at">model =</span> <span class="st">"versicolor"</span>, </span>
+<span id="cb37-392"><a href="#cb37-392"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(versicolor)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]],</span>
+<span id="cb37-393"><a href="#cb37-393"></a>    <span class="at">se =</span> versicolor[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> versicolor[[<span class="st">"r.squared"</span>]],</span>
+<span id="cb37-394"><a href="#cb37-394"></a>    <span class="at">R2adj =</span> versicolor[[<span class="st">"adj.r.squared"</span>]]),</span>
+<span id="cb37-395"><a href="#cb37-395"></a>  <span class="fu">cbind.data.frame</span>(</span>
+<span id="cb37-396"><a href="#cb37-396"></a>    <span class="at">model =</span> <span class="st">"virginica"</span>, </span>
+<span id="cb37-397"><a href="#cb37-397"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(virginica)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]],</span>
+<span id="cb37-398"><a href="#cb37-398"></a>    <span class="at">se =</span> virginica[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> virginica[[<span class="st">"r.squared"</span>]],</span>
+<span id="cb37-399"><a href="#cb37-399"></a>    <span class="at">R2adj =</span> virginica[[<span class="st">"adj.r.squared"</span>]]))</span>
+<span id="cb37-400"><a href="#cb37-400"></a></span>
+<span id="cb37-401"><a href="#cb37-401"></a><span class="co"># some cosmetics </span></span>
+<span id="cb37-402"><a href="#cb37-402"></a>models<span class="sc">$</span>intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>intercept, <span class="dv">2</span>)</span>
+<span id="cb37-403"><a href="#cb37-403"></a>models<span class="sc">$</span>se <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>se, <span class="dv">2</span>)</span>
+<span id="cb37-404"><a href="#cb37-404"></a>models<span class="sc">$</span>R2 <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>R2, <span class="dv">2</span>)</span>
+<span id="cb37-405"><a href="#cb37-405"></a>models<span class="sc">$</span>R2adj <span class="ot">&lt;-</span> <span class="fu">round</span>(models<span class="sc">$</span>R2adj, <span class="dv">2</span>)</span>
+<span id="cb37-406"><a href="#cb37-406"></a>models</span>
+<span id="cb37-407"><a href="#cb37-407"></a><span class="st">```</span></span>
+<span id="cb37-408"><a href="#cb37-408"></a></span>
+<span id="cb37-409"><a href="#cb37-409"></a><span class="at">#### lapply</span></span>
+<span id="cb37-410"><a href="#cb37-410"></a></span>
+<span id="cb37-411"><a href="#cb37-411"></a><span class="st">```</span>{r, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
+<span id="cb37-412"><a href="#cb37-412"></a><span class="co">#| label: tbl-modelperflapply</span></span>
+<span id="cb37-413"><a href="#cb37-413"></a><span class="co">#| tbl-cap: model performance</span></span>
+<span id="cb37-414"><a href="#cb37-414"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb37-415"><a href="#cb37-415"></a><span class="co">#| column: margin</span></span>
+<span id="cb37-416"><a href="#cb37-416"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb37-417"><a href="#cb37-417"></a></span>
+<span id="cb37-418"><a href="#cb37-418"></a><span class="fu">split</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species) <span class="sc">%&gt;%</span></span>
+<span id="cb37-419"><a href="#cb37-419"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x) <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-420"><a href="#cb37-420"></a>  <span class="fu">lapply</span>(summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-421"><a href="#cb37-421"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x) <span class="fu">c</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(x)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]], </span>
+<span id="cb37-422"><a href="#cb37-422"></a>                       <span class="at">se =</span> x[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> x[[<span class="st">"r.squared"</span>]], </span>
+<span id="cb37-423"><a href="#cb37-423"></a>                       <span class="at">R2adj =</span> x[[<span class="st">"adj.r.squared"</span>]])) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-424"><a href="#cb37-424"></a>  <span class="fu">lapply</span>(round, <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-425"><a href="#cb37-425"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>) </span>
+<span id="cb37-426"><a href="#cb37-426"></a><span class="st">```</span></span>
+<span id="cb37-427"><a href="#cb37-427"></a></span>
+<span id="cb37-428"><a href="#cb37-428"></a><span class="at">#### purrr</span></span>
+<span id="cb37-429"><a href="#cb37-429"></a></span>
+<span id="cb37-430"><a href="#cb37-430"></a><span class="st">```</span>{r, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
+<span id="cb37-431"><a href="#cb37-431"></a><span class="co">#| label: tbl-modelperfpurrr</span></span>
+<span id="cb37-432"><a href="#cb37-432"></a><span class="co">#| tbl-cap: model performance</span></span>
+<span id="cb37-433"><a href="#cb37-433"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb37-434"><a href="#cb37-434"></a><span class="co">#| column: margin</span></span>
+<span id="cb37-435"><a href="#cb37-435"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb37-436"><a href="#cb37-436"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb37-437"><a href="#cb37-437"></a></span>
+<span id="cb37-438"><a href="#cb37-438"></a><span class="fu">split</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-439"><a href="#cb37-439"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> ., <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-440"><a href="#cb37-440"></a>  <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-441"><a href="#cb37-441"></a>  <span class="fu">map</span>(<span class="cf">function</span>(x) <span class="fu">c</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(x)[[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]], </span>
+<span id="cb37-442"><a href="#cb37-442"></a>                    <span class="at">se =</span> x[[<span class="st">"sigma"</span>]], <span class="at">R2 =</span> x[[<span class="st">"r.squared"</span>]], </span>
+<span id="cb37-443"><a href="#cb37-443"></a>                    <span class="at">R2adj =</span> x[[<span class="st">"adj.r.squared"</span>]])) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-444"><a href="#cb37-444"></a>  <span class="fu">map</span>(round, <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-445"><a href="#cb37-445"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>) </span>
+<span id="cb37-446"><a href="#cb37-446"></a><span class="st">```</span></span>
+<span id="cb37-447"><a href="#cb37-447"></a><span class="at">:::</span></span>
+<span id="cb37-448"><a href="#cb37-448"></a></span>
+<span id="cb37-449"><a href="#cb37-449"></a><span class="at">## Map family</span></span>
+<span id="cb37-450"><a href="#cb37-450"></a></span>
+<span id="cb37-451"><a href="#cb37-451"></a><span class="at">There are 23 primary variants of </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> but fortunately, by design of </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> we only need to learn five new ideas:</span></span>
+<span id="cb37-452"><a href="#cb37-452"></a></span>
+<span id="cb37-453"><a href="#cb37-453"></a><span class="at">-   </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at">: Returns same type as input</span></span>
+<span id="cb37-454"><a href="#cb37-454"></a><span class="at">-   </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at">: Iterate over two inputs</span></span>
+<span id="cb37-455"><a href="#cb37-455"></a><span class="at">-   </span><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at">: Iterate with an index.</span></span>
+<span id="cb37-456"><a href="#cb37-456"></a><span class="at">-   </span><span class="st">`</span><span class="fu">walk</span>()<span class="st">`</span><span class="at">: Return nothing</span></span>
+<span id="cb37-457"><a href="#cb37-457"></a><span class="at">-   </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at">: Iterate over any number of inputs</span></span>
+<span id="cb37-458"><a href="#cb37-458"></a></span>
+<span id="cb37-459"><a href="#cb37-459"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-460"><a href="#cb37-460"></a><span class="at">| arguments | list     | same_type   | nothing   |</span></span>
+<span id="cb37-461"><a href="#cb37-461"></a><span class="at">|-----------|----------|-------------|-----------|</span></span>
+<span id="cb37-462"><a href="#cb37-462"></a><span class="at">| 1         | </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at">  | </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at">  | </span><span class="st">`</span><span class="fu">walk</span>()<span class="st">`</span><span class="at">  |</span></span>
+<span id="cb37-463"><a href="#cb37-463"></a><span class="at">| 2         | </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">modify2</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">walk2</span>()<span class="st">`</span><span class="at"> |</span></span>
+<span id="cb37-464"><a href="#cb37-464"></a><span class="at">| 1 + index | </span><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">imodify</span>()<span class="st">`</span><span class="at"> | </span><span class="st">`</span><span class="fu">iwalk</span>()<span class="st">`</span><span class="at"> |</span></span>
+<span id="cb37-465"><a href="#cb37-465"></a><span class="at">| N         | </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at"> | ---         | </span><span class="st">`</span><span class="fu">pwalk</span>()<span class="st">`</span><span class="at"> |</span></span>
+<span id="cb37-466"><a href="#cb37-466"></a></span>
+<span id="cb37-467"><a href="#cb37-467"></a><span class="at">: Relation between variants {#tbl-mapvariants}</span></span>
+<span id="cb37-468"><a href="#cb37-468"></a><span class="at">:::</span></span>
+<span id="cb37-469"><a href="#cb37-469"></a></span>
+<span id="cb37-470"><a href="#cb37-470"></a><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> always returns a list. </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> returns the same type of output as the input:</span></span>
 <span id="cb37-471"><a href="#cb37-471"></a></span>
-<span id="cb37-472"><a href="#cb37-472"></a><span class="at">: Relation between variants {#tbl-mapvariants}</span></span>
-<span id="cb37-473"><a href="#cb37-473"></a><span class="at">:::</span></span>
+<span id="cb37-472"><a href="#cb37-472"></a><span class="st">```</span> r</span>
+<span id="cb37-473"><a href="#cb37-473"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">4</span>)</span>
 <span id="cb37-474"><a href="#cb37-474"></a></span>
-<span id="cb37-475"><a href="#cb37-475"></a><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> always returns a list. </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> returns the same type of output as the input:</span></span>
-<span id="cb37-476"><a href="#cb37-476"></a></span>
-<span id="cb37-477"><a href="#cb37-477"></a><span class="st">```</span> r</span>
-<span id="cb37-478"><a href="#cb37-478"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb37-479"><a href="#cb37-479"></a></span>
-<span id="cb37-480"><a href="#cb37-480"></a><span class="fu">map</span>(dd, <span class="sc">~</span> .x <span class="sc">*</span> <span class="dv">2</span>) <span class="co"># list</span></span>
-<span id="cb37-481"><a href="#cb37-481"></a><span class="fu">modify</span>(dd, <span class="sc">~</span> .x <span class="sc">*</span> <span class="dv">2</span>) <span class="co"># data.frame</span></span>
-<span id="cb37-482"><a href="#cb37-482"></a><span class="st">```</span></span>
-<span id="cb37-483"><a href="#cb37-483"></a></span>
-<span id="cb37-484"><a href="#cb37-484"></a><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> has a very useful variant of called </span><span class="st">`</span><span class="fu">modify_if</span>()<span class="st">`</span><span class="at"> which allows you to (e.g.) only double *numeric* columns of a data frame with </span><span class="st">`</span><span class="fu">modify_if</span>(dd, is.numeric, <span class="sc">~</span> .x <span class="sc">*</span> <span class="dv">2</span>)<span class="st">`</span><span class="at">.</span></span>
-<span id="cb37-485"><a href="#cb37-485"></a></span>
-<span id="cb37-486"><a href="#cb37-486"></a><span class="st">```</span> r</span>
-<span id="cb37-487"><a href="#cb37-487"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>), </span>
-<span id="cb37-488"><a href="#cb37-488"></a>                 <span class="at">z =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb37-489"><a href="#cb37-489"></a><span class="fu">map_if</span>(dd, is.numeric, mean)</span>
-<span id="cb37-490"><a href="#cb37-490"></a><span class="fu">modify_if</span>(dd, is.numeric, mean)</span>
-<span id="cb37-491"><a href="#cb37-491"></a><span class="st">```</span></span>
-<span id="cb37-492"><a href="#cb37-492"></a></span>
-<span id="cb37-493"><a href="#cb37-493"></a><span class="at">::: callout-note</span></span>
-<span id="cb37-494"><a href="#cb37-494"></a><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> doesn't modify in place, it returns a modified copy, to make it permanent modify one needs to assign it.</span></span>
-<span id="cb37-495"><a href="#cb37-495"></a><span class="at">:::</span></span>
-<span id="cb37-496"><a href="#cb37-496"></a></span>
-<span id="cb37-497"><a href="#cb37-497"></a><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> is vectorised over a single argument, </span><span class="st">`</span>.x<span class="st">`</span><span class="at"> thus making it poorly suited for some problems. For example, to find a weighted mean when you have a list of observations and a list of weights we need a new tool: a </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at">, which is vectorised over two arguments.</span></span>
-<span id="cb37-498"><a href="#cb37-498"></a></span>
-<span id="cb37-499"><a href="#cb37-499"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-500"><a href="#cb37-500"></a><span class="at">![map2](diagrams/map2.png){#fig-map2}</span></span>
-<span id="cb37-501"><a href="#cb37-501"></a><span class="at">:::</span></span>
-<span id="cb37-502"><a href="#cb37-502"></a></span>
-<span id="cb37-503"><a href="#cb37-503"></a><span class="st">```</span> r</span>
-<span id="cb37-504"><a href="#cb37-504"></a>x <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="sc">~</span> <span class="fu">runif</span>(<span class="dv">10</span>)) <span class="co"># uniform random numbers</span></span>
-<span id="cb37-505"><a href="#cb37-505"></a>w <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="sc">~</span> <span class="fu">rpois</span>(<span class="dv">10</span>, <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># poisson random numbers</span></span>
-<span id="cb37-506"><a href="#cb37-506"></a><span class="fu">map_dbl</span>(x, weighted.mean, <span class="at">w =</span> w) <span class="co"># error</span></span>
-<span id="cb37-507"><a href="#cb37-507"></a><span class="fu">map2_dbl</span>(x, w, weighted.mean) <span class="co"># desired output</span></span>
-<span id="cb37-508"><a href="#cb37-508"></a><span class="st">```</span></span>
-<span id="cb37-509"><a href="#cb37-509"></a></span>
-<span id="cb37-510"><a href="#cb37-510"></a><span class="at">The implementation of </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> is quite similar to </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at">, here instead of iterating over one vector, it iterate over two in parallel. One of the big differences between </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> &amp; </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> is that it recycles its inputs to make sure that they're the same length.</span></span>
-<span id="cb37-511"><a href="#cb37-511"></a></span>
-<span id="cb37-512"><a href="#cb37-512"></a><span class="at">::: callout-tip</span></span>
-<span id="cb37-513"><a href="#cb37-513"></a><span class="st">`</span>purrr<span class="st">`</span><span class="at"> provides the walk family of functions that ignore the return values of the </span><span class="st">`</span>.f<span class="st">`</span><span class="at"> and instead return </span><span class="st">`</span>.x<span class="st">`</span><span class="at"> invisibly</span></span>
-<span id="cb37-514"><a href="#cb37-514"></a><span class="at">:::</span></span>
-<span id="cb37-515"><a href="#cb37-515"></a></span>
-<span id="cb37-516"><a href="#cb37-516"></a><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at"> family is analogous to the to the loop over form </span><span class="st">`</span><span class="fu">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x))<span class="st">`</span><span class="at"> &amp; </span><span class="st">`</span><span class="fu">for</span> (nm <span class="cf">in</span> <span class="fu">names</span>(x))<span class="st">`</span><span class="at">. This allows you to iterate over the values and the indices of a vector in parallel.</span></span>
+<span id="cb37-475"><a href="#cb37-475"></a><span class="fu">map</span>(dd, <span class="sc">~</span> .x <span class="sc">*</span> <span class="dv">2</span>) <span class="co"># list</span></span>
+<span id="cb37-476"><a href="#cb37-476"></a><span class="fu">modify</span>(dd, <span class="sc">~</span> .x <span class="sc">*</span> <span class="dv">2</span>) <span class="co"># data.frame</span></span>
+<span id="cb37-477"><a href="#cb37-477"></a><span class="st">```</span></span>
+<span id="cb37-478"><a href="#cb37-478"></a></span>
+<span id="cb37-479"><a href="#cb37-479"></a><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> has a very useful variant of called </span><span class="st">`</span><span class="fu">modify_if</span>()<span class="st">`</span><span class="at"> which allows you to (e.g.) only double *numeric* columns of a data frame with </span><span class="st">`</span><span class="fu">modify_if</span>(dd, is.numeric, <span class="sc">~</span> .x <span class="sc">*</span> <span class="dv">2</span>)<span class="st">`</span><span class="at">.</span></span>
+<span id="cb37-480"><a href="#cb37-480"></a></span>
+<span id="cb37-481"><a href="#cb37-481"></a><span class="st">```</span> r</span>
+<span id="cb37-482"><a href="#cb37-482"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>), </span>
+<span id="cb37-483"><a href="#cb37-483"></a>                 <span class="at">z =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb37-484"><a href="#cb37-484"></a><span class="fu">map_if</span>(dd, is.numeric, mean)</span>
+<span id="cb37-485"><a href="#cb37-485"></a><span class="fu">modify_if</span>(dd, is.numeric, mean)</span>
+<span id="cb37-486"><a href="#cb37-486"></a><span class="st">```</span></span>
+<span id="cb37-487"><a href="#cb37-487"></a></span>
+<span id="cb37-488"><a href="#cb37-488"></a><span class="at">::: callout-note</span></span>
+<span id="cb37-489"><a href="#cb37-489"></a><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> doesn't modify in place, it returns a modified copy, to make it permanent modify one needs to assign it.</span></span>
+<span id="cb37-490"><a href="#cb37-490"></a><span class="at">:::</span></span>
+<span id="cb37-491"><a href="#cb37-491"></a></span>
+<span id="cb37-492"><a href="#cb37-492"></a><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> is vectorised over a single argument, </span><span class="st">`</span>.x<span class="st">`</span><span class="at"> thus making it poorly suited for some problems. For example, to find a weighted mean when you have a list of observations and a list of weights we need a new tool: a </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at">, which is vectorised over two arguments.</span></span>
+<span id="cb37-493"><a href="#cb37-493"></a></span>
+<span id="cb37-494"><a href="#cb37-494"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-495"><a href="#cb37-495"></a><span class="at">![map2](diagrams/map2.png){#fig-map2}</span></span>
+<span id="cb37-496"><a href="#cb37-496"></a><span class="at">:::</span></span>
+<span id="cb37-497"><a href="#cb37-497"></a></span>
+<span id="cb37-498"><a href="#cb37-498"></a><span class="st">```</span> r</span>
+<span id="cb37-499"><a href="#cb37-499"></a>x <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="sc">~</span> <span class="fu">runif</span>(<span class="dv">10</span>)) <span class="co"># uniform random numbers</span></span>
+<span id="cb37-500"><a href="#cb37-500"></a>w <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="sc">~</span> <span class="fu">rpois</span>(<span class="dv">10</span>, <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># poisson random numbers</span></span>
+<span id="cb37-501"><a href="#cb37-501"></a><span class="fu">map_dbl</span>(x, weighted.mean, <span class="at">w =</span> w) <span class="co"># error</span></span>
+<span id="cb37-502"><a href="#cb37-502"></a><span class="fu">map2_dbl</span>(x, w, weighted.mean) <span class="co"># desired output</span></span>
+<span id="cb37-503"><a href="#cb37-503"></a><span class="st">```</span></span>
+<span id="cb37-504"><a href="#cb37-504"></a></span>
+<span id="cb37-505"><a href="#cb37-505"></a><span class="at">The implementation of </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> is quite similar to </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at">, here instead of iterating over one vector, it iterate over two in parallel. One of the big differences between </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> &amp; </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at"> is that it recycles its inputs to make sure that they're the same length.</span></span>
+<span id="cb37-506"><a href="#cb37-506"></a></span>
+<span id="cb37-507"><a href="#cb37-507"></a><span class="at">::: callout-tip</span></span>
+<span id="cb37-508"><a href="#cb37-508"></a><span class="st">`</span>purrr<span class="st">`</span><span class="at"> provides the walk family of functions that ignore the return values of the </span><span class="st">`</span>.f<span class="st">`</span><span class="at"> and instead return </span><span class="st">`</span>.x<span class="st">`</span><span class="at"> invisibly</span></span>
+<span id="cb37-509"><a href="#cb37-509"></a><span class="at">:::</span></span>
+<span id="cb37-510"><a href="#cb37-510"></a></span>
+<span id="cb37-511"><a href="#cb37-511"></a><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at"> family is analogous to the to the loop over form </span><span class="st">`</span><span class="fu">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x))<span class="st">`</span><span class="at"> &amp; </span><span class="st">`</span><span class="fu">for</span> (nm <span class="cf">in</span> <span class="fu">names</span>(x))<span class="st">`</span><span class="at">. This allows you to iterate over the values and the indices of a vector in parallel.</span></span>
+<span id="cb37-512"><a href="#cb37-512"></a></span>
+<span id="cb37-513"><a href="#cb37-513"></a><span class="st">```</span> r</span>
+<span id="cb37-514"><a href="#cb37-514"></a>x <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">1000</span>, <span class="dv">10</span>))</span>
+<span id="cb37-515"><a href="#cb37-515"></a><span class="fu">imap_chr</span>(x, <span class="sc">~</span> <span class="fu">paste0</span>(<span class="st">"The highest value of "</span>, .y, <span class="st">" is "</span>, <span class="fu">max</span>(.x)))</span>
+<span id="cb37-516"><a href="#cb37-516"></a><span class="st">```</span></span>
 <span id="cb37-517"><a href="#cb37-517"></a></span>
-<span id="cb37-518"><a href="#cb37-518"></a><span class="st">```</span> r</span>
-<span id="cb37-519"><a href="#cb37-519"></a>x <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">1000</span>, <span class="dv">10</span>))</span>
-<span id="cb37-520"><a href="#cb37-520"></a><span class="fu">imap_chr</span>(x, <span class="sc">~</span> <span class="fu">paste0</span>(<span class="st">"The highest value of "</span>, .y, <span class="st">" is "</span>, <span class="fu">max</span>(.x)))</span>
-<span id="cb37-521"><a href="#cb37-521"></a><span class="st">```</span></span>
-<span id="cb37-522"><a href="#cb37-522"></a></span>
-<span id="cb37-523"><a href="#cb37-523"></a><span class="at">::: callout-tip</span></span>
-<span id="cb37-524"><a href="#cb37-524"></a><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at"> is useful if you want to work with the values in a vector along with their positions.</span></span>
-<span id="cb37-525"><a href="#cb37-525"></a><span class="at">:::</span></span>
-<span id="cb37-526"><a href="#cb37-526"></a></span>
-<span id="cb37-527"><a href="#cb37-527"></a><span class="at">Since we have </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> and </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at">, one might expect </span><span class="st">`</span><span class="fu">map3</span>()<span class="st">`</span><span class="at">, </span><span class="st">`</span><span class="fu">map4</span>()<span class="st">`</span><span class="at">, </span><span class="st">`</span><span class="fu">map5</span>()<span class="st">`</span><span class="at">, instead </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> takes a slightly different tack with </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at">: you supply it a single list, which contains any number of arguments. In most cases, that will be a list of equal-length vectors, similar to </span><span class="st">`</span>data.frame<span class="st">`</span><span class="at">.</span></span>
-<span id="cb37-528"><a href="#cb37-528"></a></span>
-<span id="cb37-529"><a href="#cb37-529"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-530"><a href="#cb37-530"></a><span class="at">![pmap](diagrams/pmap.png){#fig-pmap}</span></span>
-<span id="cb37-531"><a href="#cb37-531"></a><span class="at">:::</span></span>
-<span id="cb37-532"><a href="#cb37-532"></a></span>
-<span id="cb37-533"><a href="#cb37-533"></a><span class="at">::: {.callout-note title="Example"}</span></span>
-<span id="cb37-534"><a href="#cb37-534"></a><span class="st">`</span><span class="fu">map2</span>(x, y, f)<span class="st">`</span><span class="at"> is equivalent to </span><span class="st">`</span><span class="fu">pmap</span>(<span class="fu">list</span>(x, y), f)<span class="st">`</span><span class="at"> </span><span class="st">`</span><span class="fu">map2_dbl</span>(x, w, weighted.mean)<span class="st">`</span><span class="at"> is equivalent to </span><span class="st">`</span><span class="fu">pmap_dbl</span>(<span class="fu">list</span>(x, w), weighted.mean)<span class="st">`</span></span>
-<span id="cb37-535"><a href="#cb37-535"></a><span class="at">:::</span></span>
-<span id="cb37-536"><a href="#cb37-536"></a></span>
-<span id="cb37-537"><a href="#cb37-537"></a><span class="at">A big difference between </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at"> and the is that </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at"> gives you much finer control over argument matching over other map functions because one can name the components of the list.I It's always a good practice to name the components of the list to make it very clear how the function will be called.</span></span>
-<span id="cb37-538"><a href="#cb37-538"></a></span>
-<span id="cb37-539"><a href="#cb37-539"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-540"><a href="#cb37-540"></a><span class="at">![pmap with arguments](diagrams/pmap-3.png){#fig-pmapargs}</span></span>
-<span id="cb37-541"><a href="#cb37-541"></a><span class="at">:::</span></span>
-<span id="cb37-542"><a href="#cb37-542"></a></span>
-<span id="cb37-543"><a href="#cb37-543"></a><span class="st">```</span> r</span>
-<span id="cb37-544"><a href="#cb37-544"></a>params <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb37-545"><a href="#cb37-545"></a>  <span class="sc">~</span> n, <span class="sc">~</span> min, <span class="sc">~</span> max,</span>
-<span id="cb37-546"><a href="#cb37-546"></a>   1L,     <span class="dv">0</span>,     <span class="dv">1</span>,</span>
-<span id="cb37-547"><a href="#cb37-547"></a>   2L,    <span class="dv">10</span>,   <span class="dv">100</span>,</span>
-<span id="cb37-548"><a href="#cb37-548"></a>   3L,   <span class="dv">100</span>,  <span class="dv">1000</span>)</span>
-<span id="cb37-549"><a href="#cb37-549"></a>   </span>
-<span id="cb37-550"><a href="#cb37-550"></a><span class="fu">pmap</span>(params, runif)</span>
-<span id="cb37-551"><a href="#cb37-551"></a><span class="st">```</span></span>
-<span id="cb37-552"><a href="#cb37-552"></a></span>
-<span id="cb37-553"><a href="#cb37-553"></a><span class="at">::: {.callout-warning title="Caution"}</span></span>
-<span id="cb37-554"><a href="#cb37-554"></a><span class="at">Here, the column names are critical.</span></span>
-<span id="cb37-555"><a href="#cb37-555"></a><span class="at">:::</span></span>
-<span id="cb37-556"><a href="#cb37-556"></a></span>
-<span id="cb37-557"><a href="#cb37-557"></a><span class="at">## Reduce family</span></span>
-<span id="cb37-558"><a href="#cb37-558"></a></span>
-<span id="cb37-559"><a href="#cb37-559"></a><span class="at">The next most important family of functions is the </span><span class="st">`</span>reduce<span class="st">`</span><span class="at"> family. This is smaller, with only two main variants &amp; is less commonly used, but it's a powerful idea. </span><span class="st">`</span><span class="fu">reduce</span>()<span class="st">`</span><span class="at"> takes a vector of length *n* and produces a vector of length *1* by calling a function with a pair of values at a time.</span></span>
-<span id="cb37-560"><a href="#cb37-560"></a></span>
-<span id="cb37-561"><a href="#cb37-561"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-562"><a href="#cb37-562"></a><span class="at">![reduce](diagrams/reduce.png){#fig-reduce}</span></span>
-<span id="cb37-563"><a href="#cb37-563"></a><span class="at">:::</span></span>
-<span id="cb37-564"><a href="#cb37-564"></a></span>
-<span id="cb37-565"><a href="#cb37-565"></a><span class="at">::: {.callout-note title="Example"}</span></span>
-<span id="cb37-566"><a href="#cb37-566"></a><span class="st">`</span><span class="fu">reduce</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, f)<span class="st">`</span><span class="at"> is equivalent to </span><span class="st">`</span><span class="fu">f</span>(<span class="fu">f</span>(<span class="fu">f</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">3</span>), <span class="dv">4</span>)<span class="st">`</span><span class="at">.</span></span>
-<span id="cb37-567"><a href="#cb37-567"></a><span class="at">:::</span></span>
-<span id="cb37-568"><a href="#cb37-568"></a></span>
-<span id="cb37-571"><a href="#cb37-571"></a><span class="in">```{r}</span></span>
-<span id="cb37-572"><a href="#cb37-572"></a>x <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="at">replace =</span> T))</span>
-<span id="cb37-573"><a href="#cb37-573"></a><span class="fu">str</span>(x)</span>
-<span id="cb37-574"><a href="#cb37-574"></a><span class="st">```</span></span>
-<span id="cb37-575"><a href="#cb37-575"></a></span>
-<span id="cb37-576"><a href="#cb37-576"></a><span class="at">Let's find the common observations from the above list</span></span>
-<span id="cb37-577"><a href="#cb37-577"></a></span>
-<span id="cb37-578"><a href="#cb37-578"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-579"><a href="#cb37-579"></a><span class="at">The first </span><span class="st">`</span><span class="fu">reduce</span>()<span class="st">`</span><span class="at"> variant is </span><span class="st">`</span><span class="fu">accumulate</span>()<span class="st">`</span><span class="at"> which it returns all the intermediate results.</span></span>
-<span id="cb37-580"><a href="#cb37-580"></a><span class="at">:::</span></span>
-<span id="cb37-581"><a href="#cb37-581"></a></span>
-<span id="cb37-582"><a href="#cb37-582"></a><span class="at">::: panel-tabset</span></span>
-<span id="cb37-583"><a href="#cb37-583"></a></span>
-<span id="cb37-584"><a href="#cb37-584"></a><span class="at">### copy-paste</span></span>
-<span id="cb37-585"><a href="#cb37-585"></a></span>
-<span id="cb37-588"><a href="#cb37-588"></a><span class="in">```{r}</span></span>
-<span id="cb37-589"><a href="#cb37-589"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb37-590"><a href="#cb37-590"></a>out <span class="ot">&lt;-</span> x[[<span class="dv">1</span>]]</span>
-<span id="cb37-591"><a href="#cb37-591"></a>out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[<span class="dv">2</span>]])</span>
-<span id="cb37-592"><a href="#cb37-592"></a>out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[<span class="dv">3</span>]])</span>
-<span id="cb37-593"><a href="#cb37-593"></a>out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[<span class="dv">4</span>]])</span>
-<span id="cb37-594"><a href="#cb37-594"></a>out</span>
-<span id="cb37-595"><a href="#cb37-595"></a><span class="st">```</span></span>
-<span id="cb37-596"><a href="#cb37-596"></a></span>
-<span id="cb37-597"><a href="#cb37-597"></a><span class="at">### loop</span></span>
-<span id="cb37-598"><a href="#cb37-598"></a></span>
-<span id="cb37-601"><a href="#cb37-601"></a><span class="in">```{r}</span></span>
-<span id="cb37-602"><a href="#cb37-602"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb37-603"><a href="#cb37-603"></a>out <span class="ot">&lt;-</span> x[[<span class="dv">1</span>]]</span>
-<span id="cb37-604"><a href="#cb37-604"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
-<span id="cb37-605"><a href="#cb37-605"></a>  out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[i]])</span>
-<span id="cb37-606"><a href="#cb37-606"></a>}</span>
-<span id="cb37-607"><a href="#cb37-607"></a>out</span>
-<span id="cb37-608"><a href="#cb37-608"></a><span class="st">```</span></span>
-<span id="cb37-609"><a href="#cb37-609"></a></span>
-<span id="cb37-610"><a href="#cb37-610"></a><span class="at">### reduce</span></span>
-<span id="cb37-611"><a href="#cb37-611"></a></span>
-<span id="cb37-614"><a href="#cb37-614"></a><span class="in">```{r}</span></span>
-<span id="cb37-615"><a href="#cb37-615"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb37-616"><a href="#cb37-616"></a><span class="co"># accumulate(x, intersect)</span></span>
-<span id="cb37-617"><a href="#cb37-617"></a><span class="fu">reduce</span>(x, intersect)</span>
-<span id="cb37-618"><a href="#cb37-618"></a><span class="st">```</span></span>
-<span id="cb37-619"><a href="#cb37-619"></a></span>
-<span id="cb37-620"><a href="#cb37-620"></a><span class="at">:::</span></span>
-<span id="cb37-621"><a href="#cb37-621"></a></span>
-<span id="cb37-622"><a href="#cb37-622"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-623"><a href="#cb37-623"></a><span class="at">&gt; </span><span class="st">`</span>map<span class="sc">-</span>reduce<span class="st">`</span><span class="at"> (map combined with a reduce) is the idea that powers technology like </span><span class="st">`</span>Hadoop<span class="st">`</span><span class="at">. Now you can see how simple and powerful the underlying idea is. As a simple example, imagine computing the mean of a very large vector, so large that it has to be split over multiple computers. You could ask each computer to calculate the sum and the length, and then return those to the coordinator which computes the overall mean by dividing the total sum by the total length.</span></span>
-<span id="cb37-624"><a href="#cb37-624"></a><span class="at">:::</span></span>
-<span id="cb37-625"><a href="#cb37-625"></a></span>
-<span id="cb37-626"><a href="#cb37-626"></a><span class="at">## Predicate functionals</span></span>
-<span id="cb37-627"><a href="#cb37-627"></a></span>
-<span id="cb37-628"><a href="#cb37-628"></a><span class="at">A **predicate** function returns a single </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> or </span><span class="st">`</span>FALSE<span class="st">`</span><span class="at">, it returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> when it **matches** a vector. It applies a predicate to each element of a vector. </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> provides seven useful functions which come in three groups:</span></span>
-<span id="cb37-629"><a href="#cb37-629"></a></span>
-<span id="cb37-630"><a href="#cb37-630"></a><span class="at">|     | function               | description                                 |</span></span>
-<span id="cb37-631"><a href="#cb37-631"></a><span class="at">|-----|------------------------|---------------------------------------------|</span></span>
-<span id="cb37-632"><a href="#cb37-632"></a><span class="at">| 1   | </span><span class="st">`</span><span class="fu">some</span>(.x, .p)<span class="st">`</span><span class="at">         | returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> if **any** element matches   |</span></span>
-<span id="cb37-633"><a href="#cb37-633"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">every</span>(.x, .p)<span class="st">`</span><span class="at">        | returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> if **all** element matches.  |</span></span>
-<span id="cb37-634"><a href="#cb37-634"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">none</span>(.x, .p)<span class="st">`</span><span class="at">         | returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> if **no** element matches    |</span></span>
-<span id="cb37-635"><a href="#cb37-635"></a><span class="at">| 2   | </span><span class="st">`</span><span class="fu">detect</span>(.x, .p)<span class="st">`</span><span class="at">       | returns the **value** of the first match    |</span></span>
-<span id="cb37-636"><a href="#cb37-636"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">detect_index</span>(.x, .p)<span class="st">`</span><span class="at"> | returns the **location** of the first match |</span></span>
-<span id="cb37-637"><a href="#cb37-637"></a><span class="at">| 3   | </span><span class="st">`</span><span class="fu">keep</span>(.x, .p)<span class="st">`</span><span class="at">.        | **keeps** all matching elements             |</span></span>
-<span id="cb37-638"><a href="#cb37-638"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">discard</span>(.x, .p)<span class="st">`</span><span class="at">      | **drops** all matching elements             |</span></span>
-<span id="cb37-639"><a href="#cb37-639"></a></span>
-<span id="cb37-640"><a href="#cb37-640"></a><span class="st">```</span> r</span>
-<span id="cb37-641"><a href="#cb37-641"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>), <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb37-642"><a href="#cb37-642"></a><span class="fu">detect</span>(dd, is.factor)</span>
-<span id="cb37-643"><a href="#cb37-643"></a><span class="fu">detect_index</span>(dd, is.factor)</span>
-<span id="cb37-644"><a href="#cb37-644"></a><span class="fu">keep</span>(dd, is.factor)</span>
-<span id="cb37-645"><a href="#cb37-645"></a><span class="fu">discard</span>(dd, is.factor)</span>
-<span id="cb37-646"><a href="#cb37-646"></a><span class="st">```</span></span>
-<span id="cb37-647"><a href="#cb37-647"></a></span>
-<span id="cb37-648"><a href="#cb37-648"></a><span class="at">::: callout-note</span></span>
-<span id="cb37-649"><a href="#cb37-649"></a><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> and </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> also can take predicate functions.</span></span>
-<span id="cb37-650"><a href="#cb37-650"></a><span class="at">:::</span></span>
-<span id="cb37-651"><a href="#cb37-651"></a></span>
-<span id="cb37-652"><a href="#cb37-652"></a><span class="at"># Applications</span></span>
-<span id="cb37-653"><a href="#cb37-653"></a></span>
-<span id="cb37-654"><a href="#cb37-654"></a><span class="at">## MLE</span></span>
-<span id="cb37-655"><a href="#cb37-655"></a></span>
-<span id="cb37-656"><a href="#cb37-656"></a><span class="at">The goal of maximum likelihood estimation (MLE) is to find the parameter values for a distribution that make the observed data most likely. To do MLE, we start with a probability function. For example, let's take the Poisson distribution. If we know $\lambda$, we can compute the probability of getting a vector $\mathbf{x}$ of values ($x_1$, $x_2$, ..., $x_n$) by multiplying the Poisson probability function as follows:</span></span>
-<span id="cb37-657"><a href="#cb37-657"></a></span>
-<span id="cb37-658"><a href="#cb37-658"></a><span class="at">$$</span></span>
-<span id="cb37-659"><a href="#cb37-659"></a><span class="at">P(\lambda, \mathbf{x}) = \prod_{i=1}^{n} </span><span class="sc">\f</span><span class="at">rac{\lambda ^ {x_i} e^{-\lambda}}{x_i!}</span></span>
-<span id="cb37-660"><a href="#cb37-660"></a><span class="at">$$ Let's apply a </span><span class="st">`</span>log<span class="st">`</span><span class="at"> transformation to this probability function and simplify it as much as possible: $$</span></span>
-<span id="cb37-661"><a href="#cb37-661"></a><span class="at">\log(P(\lambda, \mathbf{x})) = \log(\lambda) \sum_{i=1}^{n} x_i - n \lambda - \sum_{i=1}^{n} \log(x_i!) </span></span>
-<span id="cb37-662"><a href="#cb37-662"></a><span class="at">$$</span></span>
-<span id="cb37-663"><a href="#cb37-663"></a></span>
-<span id="cb37-664"><a href="#cb37-664"></a><span class="at">We can now turn this function into an R function.</span></span>
-<span id="cb37-665"><a href="#cb37-665"></a></span>
-<span id="cb37-666"><a href="#cb37-666"></a><span class="st">```</span> r</span>
-<span id="cb37-667"><a href="#cb37-667"></a><span class="co">#' log_likelihood</span></span>
-<span id="cb37-668"><a href="#cb37-668"></a><span class="co">#' @param lambda shape parameter </span></span>
-<span id="cb37-669"><a href="#cb37-669"></a><span class="co">#' @param x input vector</span></span>
-<span id="cb37-670"><a href="#cb37-670"></a><span class="co">#' @return compute the (logged) probability</span></span>
-<span id="cb37-671"><a href="#cb37-671"></a><span class="co">#' @example</span></span>
-<span id="cb37-672"><a href="#cb37-672"></a><span class="co">#' log_likelihood(0.3, x = c(2, 1, 3, 0, 2))</span></span>
-<span id="cb37-673"><a href="#cb37-673"></a><span class="co">#' </span></span>
-<span id="cb37-674"><a href="#cb37-674"></a>log_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, x) {</span>
-<span id="cb37-675"><a href="#cb37-675"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb37-676"><a href="#cb37-676"></a>  (<span class="fu">log</span>(lambda) <span class="sc">*</span> <span class="fu">sum</span>(x)) <span class="sc">-</span> (n <span class="sc">*</span> lambda) <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">lfactorial</span>(x))</span>
-<span id="cb37-677"><a href="#cb37-677"></a>}</span>
-<span id="cb37-678"><a href="#cb37-678"></a><span class="st">```</span></span>
-<span id="cb37-679"><a href="#cb37-679"></a></span>
-<span id="cb37-680"><a href="#cb37-680"></a><span class="at">::: column-margin</span></span>
-<span id="cb37-681"><a href="#cb37-681"></a><span class="at">&gt; The R function is quite elegant because R is vectorised and, because it's a statistical programming language, R comes with built-in functions like the log-factorial (</span><span class="st">`</span><span class="fu">lfactorial</span>()<span class="st">`</span><span class="at">).</span></span>
-<span id="cb37-682"><a href="#cb37-682"></a><span class="at">:::</span></span>
-<span id="cb37-683"><a href="#cb37-683"></a></span>
-<span id="cb37-684"><a href="#cb37-684"></a><span class="at">So far we've been thinking of </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> as fixed &amp; known &amp; the function gives us the *probability of getting different values of </span><span class="st">`</span>x<span class="st">`</span><span class="at">*. But in real-life, we observe </span><span class="st">`</span>x<span class="st">`</span><span class="at"> and it is </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> that is unknown. We want to find the </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> that makes the observed </span><span class="st">`</span>x<span class="st">`</span><span class="at"> the most likely. That is, given </span><span class="st">`</span>x<span class="st">`</span><span class="at">, what value of </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> gives us the highest value of </span><span class="st">`</span>log_likelihood<span class="st">`</span><span class="at">()?</span></span>
+<span id="cb37-518"><a href="#cb37-518"></a><span class="at">::: callout-tip</span></span>
+<span id="cb37-519"><a href="#cb37-519"></a><span class="st">`</span><span class="fu">imap</span>()<span class="st">`</span><span class="at"> is useful if you want to work with the values in a vector along with their positions.</span></span>
+<span id="cb37-520"><a href="#cb37-520"></a><span class="at">:::</span></span>
+<span id="cb37-521"><a href="#cb37-521"></a></span>
+<span id="cb37-522"><a href="#cb37-522"></a><span class="at">Since we have </span><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> and </span><span class="st">`</span><span class="fu">map2</span>()<span class="st">`</span><span class="at">, one might expect </span><span class="st">`</span><span class="fu">map3</span>()<span class="st">`</span><span class="at">, </span><span class="st">`</span><span class="fu">map4</span>()<span class="st">`</span><span class="at">, </span><span class="st">`</span><span class="fu">map5</span>()<span class="st">`</span><span class="at">, instead </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> takes a slightly different tack with </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at">: you supply it a single list, which contains any number of arguments. In most cases, that will be a list of equal-length vectors, similar to </span><span class="st">`</span>data.frame<span class="st">`</span><span class="at">.</span></span>
+<span id="cb37-523"><a href="#cb37-523"></a></span>
+<span id="cb37-524"><a href="#cb37-524"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-525"><a href="#cb37-525"></a><span class="at">![pmap](diagrams/pmap.png){#fig-pmap}</span></span>
+<span id="cb37-526"><a href="#cb37-526"></a><span class="at">:::</span></span>
+<span id="cb37-527"><a href="#cb37-527"></a></span>
+<span id="cb37-528"><a href="#cb37-528"></a><span class="at">::: {.callout-note title="Example"}</span></span>
+<span id="cb37-529"><a href="#cb37-529"></a><span class="st">`</span><span class="fu">map2</span>(x, y, f)<span class="st">`</span><span class="at"> is equivalent to </span><span class="st">`</span><span class="fu">pmap</span>(<span class="fu">list</span>(x, y), f)<span class="st">`</span><span class="at"> </span><span class="st">`</span><span class="fu">map2_dbl</span>(x, w, weighted.mean)<span class="st">`</span><span class="at"> is equivalent to </span><span class="st">`</span><span class="fu">pmap_dbl</span>(<span class="fu">list</span>(x, w), weighted.mean)<span class="st">`</span></span>
+<span id="cb37-530"><a href="#cb37-530"></a><span class="at">:::</span></span>
+<span id="cb37-531"><a href="#cb37-531"></a></span>
+<span id="cb37-532"><a href="#cb37-532"></a><span class="at">A big difference between </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at"> and the is that </span><span class="st">`</span><span class="fu">pmap</span>()<span class="st">`</span><span class="at"> gives you much finer control over argument matching over other map functions because one can name the components of the list.I It's always a good practice to name the components of the list to make it very clear how the function will be called.</span></span>
+<span id="cb37-533"><a href="#cb37-533"></a></span>
+<span id="cb37-534"><a href="#cb37-534"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-535"><a href="#cb37-535"></a><span class="at">![pmap with arguments](diagrams/pmap-3.png){#fig-pmapargs}</span></span>
+<span id="cb37-536"><a href="#cb37-536"></a><span class="at">:::</span></span>
+<span id="cb37-537"><a href="#cb37-537"></a></span>
+<span id="cb37-538"><a href="#cb37-538"></a><span class="st">```</span> r</span>
+<span id="cb37-539"><a href="#cb37-539"></a>params <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb37-540"><a href="#cb37-540"></a>  <span class="sc">~</span> n, <span class="sc">~</span> min, <span class="sc">~</span> max,</span>
+<span id="cb37-541"><a href="#cb37-541"></a>   1L,     <span class="dv">0</span>,     <span class="dv">1</span>,</span>
+<span id="cb37-542"><a href="#cb37-542"></a>   2L,    <span class="dv">10</span>,   <span class="dv">100</span>,</span>
+<span id="cb37-543"><a href="#cb37-543"></a>   3L,   <span class="dv">100</span>,  <span class="dv">1000</span>)</span>
+<span id="cb37-544"><a href="#cb37-544"></a>   </span>
+<span id="cb37-545"><a href="#cb37-545"></a><span class="fu">pmap</span>(params, runif)</span>
+<span id="cb37-546"><a href="#cb37-546"></a><span class="st">```</span></span>
+<span id="cb37-547"><a href="#cb37-547"></a></span>
+<span id="cb37-548"><a href="#cb37-548"></a><span class="at">::: {.callout-warning title="Caution"}</span></span>
+<span id="cb37-549"><a href="#cb37-549"></a><span class="at">Here, the column names are critical.</span></span>
+<span id="cb37-550"><a href="#cb37-550"></a><span class="at">:::</span></span>
+<span id="cb37-551"><a href="#cb37-551"></a></span>
+<span id="cb37-552"><a href="#cb37-552"></a><span class="at">## Reduce family</span></span>
+<span id="cb37-553"><a href="#cb37-553"></a></span>
+<span id="cb37-554"><a href="#cb37-554"></a><span class="at">The next most important family of functions is the </span><span class="st">`</span>reduce<span class="st">`</span><span class="at"> family. This is smaller, with only two main variants &amp; is less commonly used, but it's a powerful idea. </span><span class="st">`</span><span class="fu">reduce</span>()<span class="st">`</span><span class="at"> takes a vector of length *n* and produces a vector of length *1* by calling a function with a pair of values at a time.</span></span>
+<span id="cb37-555"><a href="#cb37-555"></a></span>
+<span id="cb37-556"><a href="#cb37-556"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-557"><a href="#cb37-557"></a><span class="at">![reduce](diagrams/reduce.png){#fig-reduce}</span></span>
+<span id="cb37-558"><a href="#cb37-558"></a><span class="at">:::</span></span>
+<span id="cb37-559"><a href="#cb37-559"></a></span>
+<span id="cb37-560"><a href="#cb37-560"></a><span class="at">::: {.callout-note title="Example"}</span></span>
+<span id="cb37-561"><a href="#cb37-561"></a><span class="st">`</span><span class="fu">reduce</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, f)<span class="st">`</span><span class="at"> is equivalent to </span><span class="st">`</span><span class="fu">f</span>(<span class="fu">f</span>(<span class="fu">f</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">3</span>), <span class="dv">4</span>)<span class="st">`</span><span class="at">.</span></span>
+<span id="cb37-562"><a href="#cb37-562"></a><span class="at">:::</span></span>
+<span id="cb37-563"><a href="#cb37-563"></a></span>
+<span id="cb37-566"><a href="#cb37-566"></a><span class="in">```{r}</span></span>
+<span id="cb37-567"><a href="#cb37-567"></a>x <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="at">replace =</span> T))</span>
+<span id="cb37-568"><a href="#cb37-568"></a><span class="fu">str</span>(x)</span>
+<span id="cb37-569"><a href="#cb37-569"></a><span class="st">```</span></span>
+<span id="cb37-570"><a href="#cb37-570"></a></span>
+<span id="cb37-571"><a href="#cb37-571"></a><span class="at">Let's find the common observations from the above list</span></span>
+<span id="cb37-572"><a href="#cb37-572"></a></span>
+<span id="cb37-573"><a href="#cb37-573"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-574"><a href="#cb37-574"></a><span class="at">The first </span><span class="st">`</span><span class="fu">reduce</span>()<span class="st">`</span><span class="at"> variant is </span><span class="st">`</span><span class="fu">accumulate</span>()<span class="st">`</span><span class="at"> which it returns all the intermediate results.</span></span>
+<span id="cb37-575"><a href="#cb37-575"></a><span class="at">:::</span></span>
+<span id="cb37-576"><a href="#cb37-576"></a></span>
+<span id="cb37-577"><a href="#cb37-577"></a><span class="at">::: panel-tabset</span></span>
+<span id="cb37-578"><a href="#cb37-578"></a><span class="at">### copy-paste</span></span>
+<span id="cb37-579"><a href="#cb37-579"></a></span>
+<span id="cb37-582"><a href="#cb37-582"></a><span class="in">```{r}</span></span>
+<span id="cb37-583"><a href="#cb37-583"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb37-584"><a href="#cb37-584"></a>out <span class="ot">&lt;-</span> x[[<span class="dv">1</span>]]</span>
+<span id="cb37-585"><a href="#cb37-585"></a>out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[<span class="dv">2</span>]])</span>
+<span id="cb37-586"><a href="#cb37-586"></a>out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[<span class="dv">3</span>]])</span>
+<span id="cb37-587"><a href="#cb37-587"></a>out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[<span class="dv">4</span>]])</span>
+<span id="cb37-588"><a href="#cb37-588"></a>out</span>
+<span id="cb37-589"><a href="#cb37-589"></a><span class="st">```</span></span>
+<span id="cb37-590"><a href="#cb37-590"></a></span>
+<span id="cb37-591"><a href="#cb37-591"></a><span class="at">### loop</span></span>
+<span id="cb37-592"><a href="#cb37-592"></a></span>
+<span id="cb37-595"><a href="#cb37-595"></a><span class="in">```{r}</span></span>
+<span id="cb37-596"><a href="#cb37-596"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb37-597"><a href="#cb37-597"></a>out <span class="ot">&lt;-</span> x[[<span class="dv">1</span>]]</span>
+<span id="cb37-598"><a href="#cb37-598"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
+<span id="cb37-599"><a href="#cb37-599"></a>  out <span class="ot">&lt;-</span> <span class="fu">intersect</span>(out, x[[i]])</span>
+<span id="cb37-600"><a href="#cb37-600"></a>}</span>
+<span id="cb37-601"><a href="#cb37-601"></a>out</span>
+<span id="cb37-602"><a href="#cb37-602"></a><span class="st">```</span></span>
+<span id="cb37-603"><a href="#cb37-603"></a></span>
+<span id="cb37-604"><a href="#cb37-604"></a><span class="at">### reduce</span></span>
+<span id="cb37-605"><a href="#cb37-605"></a></span>
+<span id="cb37-608"><a href="#cb37-608"></a><span class="in">```{r}</span></span>
+<span id="cb37-609"><a href="#cb37-609"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb37-610"><a href="#cb37-610"></a><span class="co"># accumulate(x, intersect)</span></span>
+<span id="cb37-611"><a href="#cb37-611"></a><span class="fu">reduce</span>(x, intersect)</span>
+<span id="cb37-612"><a href="#cb37-612"></a><span class="st">```</span></span>
+<span id="cb37-613"><a href="#cb37-613"></a><span class="at">:::</span></span>
+<span id="cb37-614"><a href="#cb37-614"></a></span>
+<span id="cb37-615"><a href="#cb37-615"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-616"><a href="#cb37-616"></a><span class="at">&gt; </span><span class="st">`</span>map<span class="sc">-</span>reduce<span class="st">`</span><span class="at"> (map combined with a reduce) is the idea that powers technology like </span><span class="st">`</span>Hadoop<span class="st">`</span><span class="at">. Now you can see how simple and powerful the underlying idea is. As a simple example, imagine computing the mean of a very large vector, so large that it has to be split over multiple computers. You could ask each computer to calculate the sum and the length, and then return those to the coordinator which computes the overall mean by dividing the total sum by the total length.</span></span>
+<span id="cb37-617"><a href="#cb37-617"></a><span class="at">:::</span></span>
+<span id="cb37-618"><a href="#cb37-618"></a></span>
+<span id="cb37-619"><a href="#cb37-619"></a><span class="at">## Predicate functionals</span></span>
+<span id="cb37-620"><a href="#cb37-620"></a></span>
+<span id="cb37-621"><a href="#cb37-621"></a><span class="at">A **predicate** function returns a single </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> or </span><span class="st">`</span>FALSE<span class="st">`</span><span class="at">, it returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> when it **matches** a vector. It applies a predicate to each element of a vector. </span><span class="st">`</span>purrr<span class="st">`</span><span class="at"> provides seven useful functions which come in three groups:</span></span>
+<span id="cb37-622"><a href="#cb37-622"></a></span>
+<span id="cb37-623"><a href="#cb37-623"></a><span class="at">|     | function               | description                                 |</span></span>
+<span id="cb37-624"><a href="#cb37-624"></a><span class="at">|-----|------------------------|---------------------------------------------|</span></span>
+<span id="cb37-625"><a href="#cb37-625"></a><span class="at">| 1   | </span><span class="st">`</span><span class="fu">some</span>(.x, .p)<span class="st">`</span><span class="at">         | returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> if **any** element matches   |</span></span>
+<span id="cb37-626"><a href="#cb37-626"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">every</span>(.x, .p)<span class="st">`</span><span class="at">        | returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> if **all** element matches.  |</span></span>
+<span id="cb37-627"><a href="#cb37-627"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">none</span>(.x, .p)<span class="st">`</span><span class="at">         | returns </span><span class="st">`</span>TRUE<span class="st">`</span><span class="at"> if **no** element matches    |</span></span>
+<span id="cb37-628"><a href="#cb37-628"></a><span class="at">| 2   | </span><span class="st">`</span><span class="fu">detect</span>(.x, .p)<span class="st">`</span><span class="at">       | returns the **value** of the first match    |</span></span>
+<span id="cb37-629"><a href="#cb37-629"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">detect_index</span>(.x, .p)<span class="st">`</span><span class="at"> | returns the **location** of the first match |</span></span>
+<span id="cb37-630"><a href="#cb37-630"></a><span class="at">| 3   | </span><span class="st">`</span><span class="fu">keep</span>(.x, .p)<span class="st">`</span><span class="at">.        | **keeps** all matching elements             |</span></span>
+<span id="cb37-631"><a href="#cb37-631"></a><span class="at">|     | </span><span class="st">`</span><span class="fu">discard</span>(.x, .p)<span class="st">`</span><span class="at">      | **drops** all matching elements             |</span></span>
+<span id="cb37-632"><a href="#cb37-632"></a></span>
+<span id="cb37-633"><a href="#cb37-633"></a><span class="st">```</span> r</span>
+<span id="cb37-634"><a href="#cb37-634"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>), <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb37-635"><a href="#cb37-635"></a><span class="fu">detect</span>(dd, is.factor)</span>
+<span id="cb37-636"><a href="#cb37-636"></a><span class="fu">detect_index</span>(dd, is.factor)</span>
+<span id="cb37-637"><a href="#cb37-637"></a><span class="fu">keep</span>(dd, is.factor)</span>
+<span id="cb37-638"><a href="#cb37-638"></a><span class="fu">discard</span>(dd, is.factor)</span>
+<span id="cb37-639"><a href="#cb37-639"></a><span class="st">```</span></span>
+<span id="cb37-640"><a href="#cb37-640"></a></span>
+<span id="cb37-641"><a href="#cb37-641"></a><span class="at">::: callout-note</span></span>
+<span id="cb37-642"><a href="#cb37-642"></a><span class="st">`</span><span class="fu">map</span>()<span class="st">`</span><span class="at"> and </span><span class="st">`</span><span class="fu">modify</span>()<span class="st">`</span><span class="at"> also can take predicate functions.</span></span>
+<span id="cb37-643"><a href="#cb37-643"></a><span class="at">:::</span></span>
+<span id="cb37-644"><a href="#cb37-644"></a></span>
+<span id="cb37-645"><a href="#cb37-645"></a><span class="at"># Applications</span></span>
+<span id="cb37-646"><a href="#cb37-646"></a></span>
+<span id="cb37-647"><a href="#cb37-647"></a><span class="at">## MLE</span></span>
+<span id="cb37-648"><a href="#cb37-648"></a></span>
+<span id="cb37-649"><a href="#cb37-649"></a><span class="at">The goal of maximum likelihood estimation (MLE) is to find the parameter values for a distribution that make the observed data most likely. To do MLE, we start with a probability function. For example, let's take the Poisson distribution. If we know $\lambda$, we can compute the probability of getting a vector $\mathbf{x}$ of values ($x_1$, $x_2$, ..., $x_n$) by multiplying the Poisson probability function as follows:</span></span>
+<span id="cb37-650"><a href="#cb37-650"></a></span>
+<span id="cb37-651"><a href="#cb37-651"></a><span class="at">$$</span></span>
+<span id="cb37-652"><a href="#cb37-652"></a><span class="at">P(\lambda, \mathbf{x}) = \prod_{i=1}^{n} </span><span class="sc">\f</span><span class="at">rac{\lambda ^ {x_i} e^{-\lambda}}{x_i!}</span></span>
+<span id="cb37-653"><a href="#cb37-653"></a><span class="at">$$ Let's apply a </span><span class="st">`</span>log<span class="st">`</span><span class="at"> transformation to this probability function and simplify it as much as possible: $$</span></span>
+<span id="cb37-654"><a href="#cb37-654"></a><span class="at">\log(P(\lambda, \mathbf{x})) = \log(\lambda) \sum_{i=1}^{n} x_i - n \lambda - \sum_{i=1}^{n} \log(x_i!) </span></span>
+<span id="cb37-655"><a href="#cb37-655"></a><span class="at">$$</span></span>
+<span id="cb37-656"><a href="#cb37-656"></a></span>
+<span id="cb37-657"><a href="#cb37-657"></a><span class="at">We can now turn this function into an R function.</span></span>
+<span id="cb37-658"><a href="#cb37-658"></a></span>
+<span id="cb37-659"><a href="#cb37-659"></a><span class="st">```</span> r</span>
+<span id="cb37-660"><a href="#cb37-660"></a><span class="co">#' log_likelihood</span></span>
+<span id="cb37-661"><a href="#cb37-661"></a><span class="co">#' @param lambda shape parameter </span></span>
+<span id="cb37-662"><a href="#cb37-662"></a><span class="co">#' @param x input vector</span></span>
+<span id="cb37-663"><a href="#cb37-663"></a><span class="co">#' @return compute the (logged) probability</span></span>
+<span id="cb37-664"><a href="#cb37-664"></a><span class="co">#' @example</span></span>
+<span id="cb37-665"><a href="#cb37-665"></a><span class="co">#' log_likelihood(0.3, x = c(2, 1, 3, 0, 2))</span></span>
+<span id="cb37-666"><a href="#cb37-666"></a><span class="co">#' </span></span>
+<span id="cb37-667"><a href="#cb37-667"></a>log_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, x) {</span>
+<span id="cb37-668"><a href="#cb37-668"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb37-669"><a href="#cb37-669"></a>  (<span class="fu">log</span>(lambda) <span class="sc">*</span> <span class="fu">sum</span>(x)) <span class="sc">-</span> (n <span class="sc">*</span> lambda) <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">lfactorial</span>(x))</span>
+<span id="cb37-670"><a href="#cb37-670"></a>}</span>
+<span id="cb37-671"><a href="#cb37-671"></a><span class="st">```</span></span>
+<span id="cb37-672"><a href="#cb37-672"></a></span>
+<span id="cb37-673"><a href="#cb37-673"></a><span class="at">::: column-margin</span></span>
+<span id="cb37-674"><a href="#cb37-674"></a><span class="at">&gt; The R function is quite elegant because R is vectorised and, because it's a statistical programming language, R comes with built-in functions like the log-factorial (</span><span class="st">`</span><span class="fu">lfactorial</span>()<span class="st">`</span><span class="at">).</span></span>
+<span id="cb37-675"><a href="#cb37-675"></a><span class="at">:::</span></span>
+<span id="cb37-676"><a href="#cb37-676"></a></span>
+<span id="cb37-677"><a href="#cb37-677"></a><span class="at">So far we've been thinking of </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> as fixed &amp; known &amp; the function gives us the *probability of getting different values of </span><span class="st">`</span>x<span class="st">`</span><span class="at">*. But in real-life, we observe </span><span class="st">`</span>x<span class="st">`</span><span class="at"> and it is </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> that is unknown. We want to find the </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> that makes the observed </span><span class="st">`</span>x<span class="st">`</span><span class="at"> the most likely. That is, given </span><span class="st">`</span>x<span class="st">`</span><span class="at">, what value of </span><span class="st">`</span>lambda<span class="st">`</span><span class="at"> gives us the highest value of </span><span class="st">`</span>log_likelihood<span class="st">`</span><span class="at">()?</span></span>
+<span id="cb37-678"><a href="#cb37-678"></a></span>
+<span id="cb37-679"><a href="#cb37-679"></a><span class="st">```</span> r</span>
+<span id="cb37-680"><a href="#cb37-680"></a>X <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">lambda =</span> <span class="fl">0.3</span>) <span class="co"># &lt;1&gt;</span></span>
+<span id="cb37-681"><a href="#cb37-681"></a>lambda <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">100</span>) <span class="co"># &lt;1&gt;</span></span>
+<span id="cb37-682"><a href="#cb37-682"></a></span>
+<span id="cb37-683"><a href="#cb37-683"></a>M <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(lambda, <span class="sc">~</span><span class="fu">log_likelihood</span>(<span class="at">lambda =</span> .x, X)) <span class="co"># &lt;2&gt;</span></span>
+<span id="cb37-684"><a href="#cb37-684"></a>best_value <span class="ot">&lt;-</span> lambda[M <span class="sc">==</span> <span class="fu">reduce</span>(M, max)] <span class="co"># &lt;2&gt;</span></span>
 <span id="cb37-685"><a href="#cb37-685"></a></span>
-<span id="cb37-686"><a href="#cb37-686"></a><span class="st">```</span> r</span>
-<span id="cb37-687"><a href="#cb37-687"></a>X <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">lambda =</span> <span class="fl">0.3</span>) <span class="co"># &lt;1&gt;</span></span>
-<span id="cb37-688"><a href="#cb37-688"></a>lambda <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">100</span>) <span class="co"># &lt;1&gt;</span></span>
+<span id="cb37-686"><a href="#cb37-686"></a><span class="co"># alternate approach</span></span>
+<span id="cb37-687"><a href="#cb37-687"></a><span class="fu">optimise</span>(log_likelihood, <span class="at">interval =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">x =</span> X, <span class="at">maximum =</span> <span class="cn">TRUE</span>) <span class="co"># &lt;3&gt;</span></span>
+<span id="cb37-688"><a href="#cb37-688"></a><span class="st">```</span></span>
 <span id="cb37-689"><a href="#cb37-689"></a></span>
-<span id="cb37-690"><a href="#cb37-690"></a>M <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(lambda, <span class="sc">~</span><span class="fu">log_likelihood</span>(<span class="at">lambda =</span> .x, X)) <span class="co"># &lt;2&gt;</span></span>
-<span id="cb37-691"><a href="#cb37-691"></a>best_value <span class="ot">&lt;-</span> lambda[M <span class="sc">==</span> <span class="fu">reduce</span>(M, max)] <span class="co"># &lt;2&gt;</span></span>
-<span id="cb37-692"><a href="#cb37-692"></a></span>
-<span id="cb37-693"><a href="#cb37-693"></a><span class="co"># alternate approach</span></span>
-<span id="cb37-694"><a href="#cb37-694"></a><span class="fu">optimise</span>(log_likelihood, <span class="at">interval =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">x =</span> X, <span class="at">maximum =</span> <span class="cn">TRUE</span>) <span class="co"># &lt;3&gt;</span></span>
-<span id="cb37-695"><a href="#cb37-695"></a><span class="st">```</span></span>
-<span id="cb37-696"><a href="#cb37-696"></a><span class="at">1.  Generate poisson random numbers &amp; selecting a random set of </span><span class="st">`</span>lambda<span class="st">`</span></span>
-<span id="cb37-697"><a href="#cb37-697"></a><span class="at">2.  Finding the best value.</span></span>
-<span id="cb37-698"><a href="#cb37-698"></a><span class="at">3.  Automates the process of finding the best value. It will evaluate </span><span class="st">`</span><span class="fu">log_likelihood</span>()<span class="st">`</span><span class="at"> many times, using mathematical tricks to narrow in on the largest value as quickly as possible</span></span>
-<span id="cb37-699"><a href="#cb37-699"></a></span>
-<span id="cb37-700"><a href="#cb37-700"></a><span class="at">## Bias and MSE</span></span>
-<span id="cb37-701"><a href="#cb37-701"></a></span>
-<span id="cb37-702"><a href="#cb37-702"></a></span>
-<span id="cb37-703"><a href="#cb37-703"></a><span class="at"># References</span></span>
-<span id="cb37-704"><a href="#cb37-704"></a></span>
-<span id="cb37-705"><a href="#cb37-705"></a><span class="at">&lt;https://purrr.tidyverse.org/reference/index.html&gt;</span></span>
+<span id="cb37-690"><a href="#cb37-690"></a><span class="at">1.  Generate poisson random numbers &amp; selecting a random set of </span><span class="st">`</span>lambda<span class="st">`</span></span>
+<span id="cb37-691"><a href="#cb37-691"></a><span class="at">2.  Finding the best value.</span></span>
+<span id="cb37-692"><a href="#cb37-692"></a><span class="at">3.  Automates the process of finding the best value. It will evaluate </span><span class="st">`</span><span class="fu">log_likelihood</span>()<span class="st">`</span><span class="at"> many times, using mathematical tricks to narrow in on the largest value as quickly as possible</span></span>
+<span id="cb37-693"><a href="#cb37-693"></a></span>
+<span id="cb37-694"><a href="#cb37-694"></a><span class="at"># References</span></span>
+<span id="cb37-695"><a href="#cb37-695"></a></span>
+<span id="cb37-696"><a href="#cb37-696"></a><span class="at">&lt;https://purrr.tidyverse.org/reference/index.html&gt;</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
