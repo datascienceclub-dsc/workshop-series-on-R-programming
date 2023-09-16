@@ -1,5 +1,7 @@
 # Reference ====
-# For online documentation refer : https://r4ds.had.co.nz 
+#' installation: install.packages("ggplot2")
+#' Book : https://r4ds.had.co.nz 
+#' For online documentation refer : https://r4ds.had.co.nz 
 browseVignettes(package = "ggplot2")
 
 # 1. About ====
@@ -13,18 +15,18 @@ packageDescription("ggplot2")
 
 # 2. Setup ====
 
-# _2.1 Initialize ====
+## 2.1 Initialize ====
 library(dplyr)
 library(ggplot2)
 
-# _2.2 Data ====
+## 2.2 Data ====
 ?mpg
 df <- mpg %>% as_tibble()
 df
 
 # 3. Basic plots ====
 
-# _3.1 geom_point ====
+## 3.1 geom_point ====
 
 df %>% 
   ggplot(mapping = aes(x = displ, y = hwy)) +
@@ -33,9 +35,9 @@ df %>%
 
 df %>% 
   ggplot(mapping = aes(x = displ, y = hwy)) + 
-  geom_point(color = "blue", size = 2)
+  geom_point(color = "blue", size = 2) # adding color and size
 
-# difference between defining parameters inside aesthetics and outside ?
+#' difference between defining parameters inside aesthetics and outside ?
 df %>% 
   ggplot(mapping = aes(x = displ, y = hwy)) + 
   geom_point(aes(color = class))
@@ -52,7 +54,7 @@ df %>%
   ggplot(mapping = aes(x = displ, y = hwy)) + 
   geom_point(aes(color = class, size = cyl, shape = fl, alpha = hwy))
 
-# _3.2 facets ====
+## 3.2 facets ====
 # split your plot into subplots that each display one subset of the data.
 df %>% 
   ggplot(aes(x = displ, y = hwy)) + 
@@ -64,7 +66,7 @@ df %>%
   geom_point() +
   facet_grid(drv ~ cyl)
 
-# _3.3 geom_smooth ====
+## 3.3 geom_smooth ====
 df %>% 
   ggplot(aes(x = displ, y = hwy)) +
   geom_point() +
@@ -86,7 +88,7 @@ df %>%
   geom_point(aes(color = class)) + 
   geom_smooth(data = filter(df, class == "subcompact"), se = T)
 
-# _3.4 geom_boxplot ====
+## 3.4 geom_boxplot ====
 df %>% 
   ggplot(aes(x = manufacturer, y = hwy)) +
   geom_boxplot() +
@@ -95,7 +97,7 @@ df %>%
 # 4. Statistical transformations ====
 # Following plots reveals something subtle about data
 
-# _4.1 geom_bar ====
+## 4.1 geom_bar ====
 # args(geom_bar): You can learn which stat a geom uses by inspecting the 
 # default value for the stat argument
 
@@ -120,7 +122,7 @@ df %>%
   geom_bar(stat = "identity") +
   coord_flip()
 
-# _4.2 stat_summary ====
+## 4.2 stat_summary ====
 # There are over 20 stats for you to use. Each stat is a function
 # https://ggplot2.tidyverse.org/reference/stat_summary.html 
 df %>% 
@@ -135,16 +137,16 @@ df %>%
 
 # 5. Position adjustments ====
 df %>% 
-  ggplot(aes(x = manufacturer, colour = trans)) +
+  ggplot(aes(x = manufacturer, colour = trans)) + # by color
   geom_bar() +
   coord_flip()
 
 df %>% 
-  ggplot(aes(x = manufacturer, fill = trans)) +
+  ggplot(aes(x = manufacturer, fill = trans)) + # by fill
   geom_bar() +
   coord_flip()
 
-# _5.1 position = "identity" ====
+## 5.1 position = "identity" ====
 # will place each object exactly where it falls in the context of the graph. 
 # This is not very useful for bars, because it overlaps them
 
@@ -164,7 +166,7 @@ df %>%
   # geom_text(stat = 'count', aes(label = ..count..), hjust = 2) +
   coord_flip()
 
-# _5.2 position = "fill" ====
+## 5.2 position = "fill" ====
 # works like stacking, but makes each set of stacked bars the same height. 
 # This makes it easier to compare proportions across groups.
 df %>% 
@@ -172,7 +174,7 @@ df %>%
   geom_bar(position = "fill", alpha = 0.5) + 
   coord_flip()
 
-# _5.3 position = "dodge" ====
+## 5.3 position = "dodge" ====
 # places overlapping objects directly beside one another. This makes it easier 
 # to compare individual values.
 df %>% 
@@ -182,16 +184,16 @@ df %>%
 
 # 6. Coordinate systems ====
 
-# _6.1 coord_flip ====
+## 6.1 coord_flip ====
 # Already explained 
 
-# _6.2 coord_polar ====
+## 6.2 coord_polar ====
 df %>% 
   ggplot(aes(x = manufacturer)) +
   geom_bar() +
   coord_polar()
 
-# _6.3 coord_quickmap ====
+## 6.3 coord_quickmap ====
 # This is useful if you’re plotting spatial data with ggplot2
 
 map_data("nz") %>% 

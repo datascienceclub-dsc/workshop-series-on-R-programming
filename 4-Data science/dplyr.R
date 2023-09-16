@@ -10,6 +10,7 @@ browseVignettes(package = "dplyr") # R package documentations
 
 # 1. About ====
 utils::packageVersion("dplyr") 
+packageDescription("dplyr")
 
 # 2. Setup ====
 
@@ -50,10 +51,11 @@ dd
 names(dd) # column names
 select(dd, Sepal.Length, Petal.Length) # without pipe 
 
-dplyr::`%>%` # pipe operation exported from package `magrittr`
+?dplyr::`%>%` # pipe operation exported from package `magrittr`
 
 dd %>% select(Sepal.Length, Petal.Length) # accessing few columns
 dd %>% select(everything()) # all columns
+dd %>% select(Species, everything()) # all columns
 dd %>% select(-Sepal.Length, -Petal.Length) # select everything by -...
 dd %>% select(Sepal.Length:Petal.Length) # selection range
 dd %>% select(contains("Length")) # column names contains "chr_string"
@@ -66,6 +68,7 @@ dd %>% select(SL = Sepal.Length, PL = Petal.Length)
 
 dd %>% select(SL = Sepal.Length, PL = Petal.Length, everything())
 dd %>% rename(SL = Sepal.Length, PL = Petal.Length) # alternative
+# dd %>% rename(SL = 1)
 
 ## 3.2 filter ====
 #' you can use any following logical tests in R
@@ -81,21 +84,27 @@ dd %>% filter(Sepal.Length > 5, Species == "versicolor") # multiple filters
 #' CAUTION: careful with non-vectorized function
 dd %>% ncol
 
-dd %>% mutate(ratio = Sepal.Length/Petal.Length) # single transformation
+dd %>% 
+  rowwise() %>% 
+  mutate(ratio = Sepal.Length/Petal.Length) %>% 
+  print(width = Inf) # single transformation
+
 dd %>% mutate(ratio = Sepal.Length/Petal.Length,
-              SepalLength2 = Sepal.Length^2) # multiple transformation
+              SepalLength2 = Sepal.Length^2) %>% 
+  print(width = Inf) # multiple transformation
 
 #' some useful transformation functions
 #' Notice the difference between mutate() & transmute() ?
 #' 
 dd %>% transmute(
   Sepal.Length,
-  Max = pmax(Sepal.Width, Petal.Width), # element wise maximum --> unlike max()
-  Min = pmin(Sepal.Width, Petal.Width), # element wise minimum --> unlike min()
-  Between = between(Sepal.Length, left = 4, right = 5), # are values between left & right ?
-  sepal_length_lead = lead(Sepal.Length), # copy with values one position down
-  sepal_length_lag = lag(Sepal.Length), # copy with values one position up
-  sepal_length_grp = ntile(Sepal.Length, n = 10)) %>% # group vector into n equal buckets 
+  max = pmax(Sepal.Width, Petal.Width), # element wise maximum --> unlike max()
+  min = pmin(Sepal.Width, Petal.Width), # element wise minimum --> unlike min()
+  isBetween_4_5 = between(Sepal.Length, left = 4, right = 5), # are values between left & right ?
+  lead = lead(Sepal.Length), # copy with values one position down
+  lag = lag(Sepal.Length), # copy with values one position up
+  grp = ntile(Sepal.Length, n = 10)) %>% # group vector into n equal buckets 
+  # coũnt(grp)
   print(width = Inf)
 
 #' look for: cume_dist(), dense_rank(), percent_rank(), ...
@@ -106,29 +115,30 @@ dd %>% transmute(
 dd %>% summarise(avg_sepal_length = mean(Sepal.Length))
 
 select_variable <- "Sepal.Length"
-
 dd %>% 
   select(v = all_of(select_variable)) %>% 
-  summarise(Variable = all_of(select_variable),
-            N = n(), # number of observations
-            Distinct = n_distinct(v), # number of distinct observations
-            Min = min(v), # minimum
-            Mean = mean(v), # average
-            Median = median(v), # median
-            Quantile75 = quantile(v, probs = 0.75), # 3rd quantile
-            Max = max(v), # maximum
-            Variance = var(v), # variance
-            Sum = sum(v), # total sum
-            First = first(v), # first observation of the vector
-            Last = last(v), # last observation of the vector
-            Std = sd(v)) # standard deviations
+  summarise(Variable = dplyr::all_of(select_variable),
+            n = n(), # number of observations
+            n_unique = n_distinct(v), # number of distinct observations
+            min = min(v), # minimum
+            avg = mean(v), # average
+            med = median(v), # median
+            q75 = quantile(v, probs = 0.75), # 3rd quantile
+            max = max(v), # maximum
+            var = var(v), # variance
+            sum = sum(v), # total sum
+            first = first(v), # first observation of the vector
+            last = last(v), # last observation of the vector
+            std = sd(v)) # standard deviations
 
 ## 3.5 arrange ====
+#' order 
+
 dd %>% print(n = 4)
 dd %>% arrange(Sepal.Length) %>% print(n = 4)
-dd %>% arrange(desc(Sepal.Length)) %>% print(n = 4)
-dd %>% arrange(Species, Sepal.Length) %>% print(n = 4)
-dd %>% arrange(desc(Species), Sepal.Length) %>% print(n = 4)
+dd %>% arrange(desc(Sepal.Length)) %>% print(n = 4, width = Inf)
+dd %>% arrange(Species, Sepal.Length) %>% print(n = 4, width = Inf)
+dd %>% arrange(desc(Species), Sepal.Length) %>% print(n = 4, width = Inf)
 
 ## 3.6 group_by ====
 # --> used along with summarise()
@@ -136,7 +146,7 @@ dd %>% count(Species)
 
 dd %>% 
   group_by(Species) %>% 
-  summarise(Mean = mean(Sepal.Length))
+  summarise(mean = mean(Sepal.Length))
 
 dd %>% 
   group_by(Species) %>% 
@@ -144,30 +154,38 @@ dd %>%
 
 dd %>% 
   mutate(SepalLength5 = Sepal.Length > 5) %>% 
-  group_by(Species, SepalLength5) %>% 
+  # print(width = Inf)
+  group_by(Species, SepalLength5) %>% # multiple group by elements
   summarise(n = n(),
             avgPL = mean(Petal.Length),
-            stdPL = sd(Petal.Length))
+            stdPL = sd(Petal.Length)) %>% 
+  ungroup()
 # Note : use ungroup() to apply operations at row level again.
 
 ## 3.7 across ====
 
 ### 3.7.1 across with mutate ====
-dd %>% mutate(across(.fns = round))
+dd %>% mutate(across(.fns = round)) # error
+str(dd)
 dd %>% mutate(across(-Species, .fns = round))
-dd %>% mutate(across(where(is.factor), .fns = as.integer))
-dd %>% mutate(across(starts_with("Petal"), .fns = mean))
+dd %>% mutate(across(where(is.factor), .fns = as.integer)) # converting factors
+dd %>% mutate(across(starts_with("Petal"), .fns = mean)) # selecting vars
 
 ### 3.7.2 across with group_by & mutate ====
+# applying functions across
 dd %>% 
   group_by(Species) %>% 
-  mutate(across(starts_with("Petal"), mean))
+  mutate(across(starts_with("Petal"), mean)) %>% 
+  ungroup() %>% 
+  slice_sample(by = "Species", n = 5)
 
 dd %>% 
   group_by(Species) %>% 
   mutate(across(starts_with("Petal"),
                 list(avg = mean, std = sd),
-                .names = "{.col}.{.fn}")) %>% 
+                .names = "{.col}.{.fn}")) %>% # output naming convention
+  ungroup() %>% 
+  slice_sample(by = "Species", n = 3) %>% 
   print(width = Inf)
 
 ### 3.7.3 across with group_by & summarise ====
@@ -189,11 +207,10 @@ dd %>% filter(if_all(ends_with("Width"), ~ . > 2))
 # --> narrates the story
 dd %>% dim
 dd %>% 
-  select(Sepal.Length:Petal.Length) %>% 
-  mutate(ratio = Sepal.Length/Petal.Length) %>% 
-  filter(Sepal.Length > 5) %>% 
-  arrange(desc(Sepal.Length)) %>% 
-  mutate()
+  select(Sepal.Length:Petal.Length) %>% # selects variable of interest
+  mutate(ratio = Sepal.Length/Petal.Length) %>% # calculates new variables
+  filter(Sepal.Length > 5) %>% # some clean up
+  arrange(desc(Sepal.Length)) # order data based on user interest
 
 # 5. Joining data ====
 
@@ -202,22 +219,22 @@ dd %>%
 
 ## 5.1 bind_rows ====
 bind_rows(d1, d2)
-d1 %>% bind_rows(d2)
+d1 %>% bind_rows(d2) # alternative
 
 ## 5.2 bind_cols ====
 d1 %>% bind_cols(d2)
 d1 %>% bind_cols(d2, .name_repair = make.names)
 
 ## 5.3 union ====
-d1 %>% union(d2)
+d1 %>% union(d2) # error
 d1 %>% union(d2 %>% select(-z))
 
 ## 5.4 intersect ====
-d1 %>% intersect(d2)
+d1 %>% intersect(d2) # error
 d1 %>% select(id) %>% intersect(d2 %>% select(id))
 
 ## 5.5 setdiff ====
-d1 %>% setdiff(d2)
+d1 %>% setdiff(d2) # error
 d1 %>% setdiff(d2 %>% select(-z))
 d2 %>% select(-z) %>% setdiff(d1)
 
