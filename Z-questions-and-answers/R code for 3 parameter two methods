@@ -43,8 +43,8 @@ mleinme <- function(n_size, n_iter = 10,p2=0.3, a2=0.3,lam=0.5) {
 n1=c(50,100,150,200,250)
 
 par1=cbind(p2 = c(0.2, 0.3, 0.4,0.6),a2=c(0.6,0.4,0.5,0.6),lam=c(0.4,0.7,0.3,0.6))
-par <- data.frame(n_size= rep(n1, each = nrow(par1)))  |> 
-  bind_cols(par1[rep(1:nrow(par1), times = length(n1)), ])
+par <- data.frame(n_size= rep(n1, 4))  |> 
+  bind_cols(par1[rep(seq_len(nrow(par1)), each = 5),])
 #' the expand grid give all the combinations, we only want the combinations of n with corresponding row
 
 
