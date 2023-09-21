@@ -1,0 +1,51 @@
+
+
+#'3 estimate,bias , rmse w.r.t 3 parameters
+#' Since we have 3 parameter , estimates are in the form of data frame
+perf <- function(x,p1=p2,a1=a2,l1=lam) {
+  
+  data.frame(ep=mean(x[,1]),
+             pb = mean(abs(x[,1] - p1)),
+             pr = sqrt(mean((x[,1] - p1) ^ 2)),
+             ea=mean(x[,2]),
+             ab = mean(abs(x[,2] - a1)),
+             ar = sqrt(mean((x[,2] - a1) ^ 2)),
+             el=mean(x[,3]),
+             lb = mean(abs(x[,3] - l1)),
+             lr = sqrt(mean((x[,3] - l1) ^ 2))
+             )
+}
+
+
+mleinme <- function(n_size, n_iter = 10,p2=0.3, a2=0.3,lam=0.5) {
+  
+  xx <- map(1:n_iter, ~ fn(r.inardme, n = n_size,p1=p2, a1=a2,l1=lam))
+  
+  l11 <- map(xx, ~fn(optim,
+                     c(p2,a2,lam),
+                     logl,
+                     method ="L-BFGS-B",
+                     lower=c(0.0001,0.0001,0.0001),
+                     upper=c(0.9999,0.9999,0.9999), 
+                     x= .x)$par) 
+
+  l1<-do.call(rbind,l11)
+  l22 <- map(xx, ~fn(optim,
+                     c(p2,a2,lam),
+                     loglse,
+                     method ="L-BFGS-B",
+                     lower=c(0.0001,0.0001,0.0001),
+                     upper=c(0.9999,0.9999,0.9999), 
+                     x= .x)$par)
+  l2<-do.call(rbind,l22)
+  data.frame(n=n_size,perf(l1,p1=p2,a1=a2,l1=lam),perf(l2,p1=p2,a1=a2,l1=lam),p=p2,al=a2,lam=lam )
+}
+n1=c(50,100,150,200,250)
+
+par1=cbind(p2 = c(0.2, 0.3, 0.4,0.6),a2=c(0.6,0.4,0.5,0.6),lam=c(0.4,0.7,0.3,0.6))
+par <- data.frame(n_size= rep(n1, each = nrow(par1)))  |> 
+  bind_cols(par1[rep(1:nrow(par1), times = length(n1)), ])
+#' the expand grid give all the combinations, we only want the combinations of n with corresponding row
+
+
+out=pmap(par, mleinme, n_iter = 1000) |>  bind_rows()
