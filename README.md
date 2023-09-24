@@ -1,4 +1,4 @@
-# Workshop series on R programming <img src="logo_CUSAT.png" align="right" height="139"/>
+# Workshop series on R programming
 
 ## About the Workshop
 
@@ -9,9 +9,9 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 
 ## Sessions planned
 
-### Department of Statistics, CUSAT September 15-16 2023
+### Department of Statistics, CUSAT September 15-16 2023 <img src="logo_CUSAT.png" align="right" height="20"/>
 
-| \#  | Topic                             | Resource person |
+| #   | Topic                             | Resource person |
 |-----|-----------------------------------|-----------------|
 | 1   | Introduction to RStudio & GitHub  | Mahesh          |
 | 2   | Basic programming with R          | Rasin           |
@@ -23,8 +23,6 @@ Unlock the power of data analysis and visualization with our comprehensive R Wor
 | 8   | Functional programming with R 2   | Rakesh          |
 | 9   | Used cases for simulation studies | Rasin & Rakesh  |
 | 10  | Open session for clarifications   | Rasin & Rakesh  |
-
-*Main focus on `tidyverse` with a bonus talk on `flextable`, `dlookr` & report pack if time permits. Main focus on family of base `apply` functions, R package `purrr` & `dplyr:::rowwise` with a bonus talk on R package `gt` & latex templates if time permits.*
 
 ## Prerequisites
 
